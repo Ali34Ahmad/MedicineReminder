@@ -14,6 +14,6 @@ data class Doctor(
     val name: String,
     val specialty: String,
     @Embedded val address: Address?=null,
-    @Embedded val location: Location?=null,//we will LatLng class instead of this class
+    @Embedded val location: Location?=null,
     @ColumnInfo(name = RoomConstants.Doctor.PHONE_NUMBER) val phoneNumber: String?=null,
 )

@@ -11,7 +11,7 @@ object RoomConstants {
         const val PHARMACEUTICAL_FORM_ID = "pharmaceutical_form_id"
         const val CURRENT_AMOUNT = "current_amount"
         const val DATE_ADDED = "date_added"
-        const val LAST_MODIFIED = "last_modified"
+        const val LAST_MODIFIED_DATE = "last_modified_date"
         const val TOTAL_MEDICATION_DURATION = "total_medication_duration"
         const val START_DATE = "start_date"
         const val ID = "id"
@@ -25,6 +25,7 @@ object RoomConstants {
 
     object PharmaceuticalForm {
         const val TABLE_NAME = "pharmaceutical_form"
+        const val IS_ADDED_BY_USER = "is_added_by_user"
         const val ID = "id"
     }
 
@@ -79,7 +80,6 @@ object RoomConstants {
         const val DOCTOR_ID = "doctor_id"
         const val DATE_ADDED = "date_added"
         const val LAST_MODIFIED_DATE = "last_modified_date"
-
     }
 
 }

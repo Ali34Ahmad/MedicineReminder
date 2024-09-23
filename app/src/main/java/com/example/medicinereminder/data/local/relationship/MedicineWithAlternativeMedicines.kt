@@ -14,5 +14,5 @@ data class MedicineWithAlternativeMedicines(
         parentColumn = RoomConstants.Medicine.ID,
         entityColumn = RoomConstants.AlternativeMedicine.ORIGINAL_MEDICINE_ID
     )
-    val alternativeMedicines: List<Medicine>
+    val alternativeMedicines: List<AlternativeMedicine>,
 )

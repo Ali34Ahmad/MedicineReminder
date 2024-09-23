@@ -48,7 +48,7 @@ data class Medicine(
     val note: String?=null,
     @ColumnInfo(name = RoomConstants.Medicine.CURRENT_AMOUNT) val currentAmount: Int,
     @ColumnInfo(name = RoomConstants.Medicine.DATE_ADDED) val dateAdded:Long,
-    @ColumnInfo(name = RoomConstants.Medicine.LAST_MODIFIED) val lastModified:Long,
+    @ColumnInfo(name = RoomConstants.Medicine.LAST_MODIFIED_DATE) val lastModifiedDate:Long,
     @ColumnInfo(name = RoomConstants.Medicine.TOTAL_MEDICATION_DURATION) val totalMedicationDuration:Long?=null,
     @ColumnInfo(name = RoomConstants.Medicine.START_DATE) val startDate:Long,
 )

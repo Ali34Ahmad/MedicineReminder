@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.medicinereminder.data.local.dao.AppointmentDao
-import com.example.medicinereminder.data.local.dao.CycleProgramDao
-import com.example.medicinereminder.data.local.dao.DoctorDao
-import com.example.medicinereminder.data.local.dao.MedicineReminderDao
-import com.example.medicinereminder.data.local.dao.PharmaceuticalFormDao
+import com.example.medicinereminder.data.local.dao.AlternativeMedicinesDao
+import com.example.medicinereminder.data.local.dao.ConflictDao
+import com.example.medicinereminder.data.local.dao.DayProgramDao
+import com.example.medicinereminder.data.local.dao.MedicineDao
+import com.example.medicinereminder.data.local.dao.TimeDao
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.entity.Conflict
@@ -38,16 +38,15 @@ import com.example.medicinereminder.utilities.RoomConstants
     ]
 )
 
-internal abstract class AppDatabase:RoomDatabase() {
+abstract class AppDatabase:RoomDatabase() {
 
-    abstract fun doctorDao(): DoctorDao
-    abstract fun appointmentDao(): AppointmentDao
-    abstract fun cycleProgramDao(): CycleProgramDao
-    abstract fun medicineReminderDao(): MedicineReminderDao
-    abstract fun pharmaceuticalFormDao(): PharmaceuticalFormDao
+    abstract fun medicineDao(): MedicineDao
+    abstract fun conflictDao(): ConflictDao
+    abstract fun alternativeMedicinesDao(): AlternativeMedicinesDao
+    abstract fun dayProgramDao(): DayProgramDao
+    abstract fun timeDao(): TimeDao
 
     companion object {
-
 
         @Volatile
         private var instance: AppDatabase? = null

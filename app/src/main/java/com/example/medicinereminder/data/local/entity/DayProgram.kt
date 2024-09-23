@@ -1,6 +1,5 @@
 package com.example.medicinereminder.data.local.entity
 
-import android.provider.SyncStateContract.Constants
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey

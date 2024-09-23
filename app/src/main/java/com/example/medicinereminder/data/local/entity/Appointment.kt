@@ -34,4 +34,5 @@ data class Appointment(
     val reminderState: ReminderState,
     @ColumnInfo(name = RoomConstants.Appointment.DATE_ADDED) val dateAdded: Long,
     @ColumnInfo(name = RoomConstants.Appointment.LAST_MODIFIED_DATE) val lastModifiedDate: Long,
+
     )

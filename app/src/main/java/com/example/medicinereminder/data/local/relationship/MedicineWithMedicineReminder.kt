@@ -7,7 +7,7 @@ import com.example.medicinereminder.data.local.entity.Medicine
 import com.example.medicinereminder.data.local.entity.MedicineReminder
 import com.example.medicinereminder.utilities.RoomConstants
 
-data class MedicineWithMedicineReminders(
+data class MedicineWithMedicineReminder(
     @Embedded
     val medicine: Medicine,
     @Relation(

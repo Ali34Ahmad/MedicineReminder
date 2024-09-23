@@ -3,8 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
-    id("androidx.room") version "2.6.1"
-    alias(libs.plugins.google.dagger.hilt.android)
+    alias(libs.plugins.androidx.room)
 }
 
 android {
@@ -34,11 +33,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_22
-        targetCompatibility = JavaVersion.VERSION_22
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "22"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,18 +77,20 @@ dependencies {
     ksp(libs.androidx.room.compiler.ksp)
     implementation(libs.androidx.room.ktx)
 
-    //Hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
-    ksp(libs.hilt.android.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
 
-    //Coroutines
-    implementation(libs.bundles.coroutines)
+    //Ui
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.activity)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.runtime)
 
-    //ViewModel
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-
+    //Desugar
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 }
 
 room {
