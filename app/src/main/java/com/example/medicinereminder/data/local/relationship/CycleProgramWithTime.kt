@@ -7,7 +7,7 @@ import com.example.medicinereminder.data.local.entity.DayProgram
 import com.example.medicinereminder.data.local.entity.Time
 import com.example.medicinereminder.utilities.RoomConstants
 
-data class CycleProgramWithTime(
+data class CycleProgramWithTimes(
     @Embedded
     val dayProgram: DayProgram,
     @Relation(

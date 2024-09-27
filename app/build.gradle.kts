@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     id("androidx.room") version "2.6.1"
+    alias(libs.plugins.google.dagger.hilt.android)
 }
 
 android {
@@ -33,11 +34,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_22
+        targetCompatibility = JavaVersion.VERSION_22
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "22"
     }
     buildFeatures {
         compose = true
@@ -73,6 +74,20 @@ dependencies {
     //Local DB
     implementation(libs.bundles.room.database)
     ksp(libs.androidx.room.compiler.ksp)
+    implementation(libs.androidx.room.ktx)
+
+    //Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    //Coroutines
+    implementation(libs.bundles.coroutines)
+
+    //ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
 }
 
 room {

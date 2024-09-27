@@ -14,7 +14,7 @@ import com.example.medicinereminder.utilities.RoomConstants
             entity = Medicine::class,
             parentColumns = [RoomConstants.Medicine.ID],
             childColumns = [RoomConstants.Conflict.MEDICINE_ID],
-            onDelete = ForeignKey.SET_NULL,
+            onDelete = ForeignKey.CASCADE,//was set null
             onUpdate = ForeignKey.CASCADE
         ),
     ],

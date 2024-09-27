@@ -4,6 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.medicinereminder.data.local.dao.AppointmentDao
+import com.example.medicinereminder.data.local.dao.CycleProgramDao
+import com.example.medicinereminder.data.local.dao.DoctorDao
+import com.example.medicinereminder.data.local.dao.MedicineReminderDao
+import com.example.medicinereminder.data.local.dao.PharmaceuticalFormDao
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.entity.Conflict
@@ -33,9 +38,16 @@ import com.example.medicinereminder.utilities.RoomConstants
     ]
 )
 
-abstract class AppDatabase:RoomDatabase() {
+internal abstract class AppDatabase:RoomDatabase() {
+
+    abstract fun doctorDao(): DoctorDao
+    abstract fun appointmentDao(): AppointmentDao
+    abstract fun cycleProgramDao(): CycleProgramDao
+    abstract fun medicineReminderDao(): MedicineReminderDao
+    abstract fun pharmaceuticalFormDao(): PharmaceuticalFormDao
 
     companion object {
+
 
         @Volatile
         private var instance: AppDatabase? = null

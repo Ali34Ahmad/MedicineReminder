@@ -6,7 +6,7 @@ import com.example.medicinereminder.data.local.entity.DayProgram
 import com.example.medicinereminder.data.local.entity.Medicine
 import com.example.medicinereminder.utilities.RoomConstants
 
-data class MedicineWithDayProgram(
+data class MedicineWithDays(
     @Embedded val medicine: Medicine,
     @Relation(
         entity = DayProgram::class,
