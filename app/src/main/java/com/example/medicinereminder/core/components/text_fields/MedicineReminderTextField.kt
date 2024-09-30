@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.medicinereminder.R
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
 fun MedicineReminderTextField(

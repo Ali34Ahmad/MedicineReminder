@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.example.medicinereminder.R
 import com.example.medicinereminder.core.components.buttons.TextButtonWithIcon
 import com.example.medicinereminder.core.components.list_items.FlowRowItem
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable

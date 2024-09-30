@@ -1,15 +1,16 @@
-package com.example.medicinereminder.core.components.cards
+package com.example.medicinereminder.common.components.check_box
 
+import android.widget.CheckBox
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.indication
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,42 +20,36 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.presentation.ui.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing
+import org.w3c.dom.Text
 
 @Composable
-fun RadioButtonItem(
-    modifier: Modifier = Modifier,
+fun CheckBoxComponent(
+    checked: Boolean,
     text: String,
-    selected: Boolean,
-    onClick: () -> Unit,
-    style:TextStyle = MaterialTheme.typography.bodyLarge,
+    onCheckedChange: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(MaterialTheme.spacing.default),
     textPadding:PaddingValues = PaddingValues(start=MaterialTheme.spacing.medium16),
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable {
-                onClick()
-            }
+    Box(modifier = modifier
+        //.indication(indication = ri)
+        .clickable {
+            onCheckedChange(!checked)
+        }
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
-                .padding(contentPadding),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(contentPadding)
         ) {
-            RadioButton(
-                selected = selected,
-                onClick = { onClick() }
-            )
+            Checkbox(checked = checked, onCheckedChange = onCheckedChange)
             Text(
                 text = text,
-                style = style,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(textPadding),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -65,32 +60,16 @@ fun RadioButtonItem(
 
 @DarkAndLightModePreview
 @Composable
-fun RadioButtonCardOnPreview() {
-    var selected by remember {
+fun CheckBoxComponentPreview() {
+    var checked by remember {
         mutableStateOf(false)
     }
     MedicineReminderTheme {
         Surface {
-            RadioButtonItem(
-                text = "English",
-                onClick = {
-                    selected = true
-                },
-                selected = selected
-            )
-        }
-    }
-}
-
-@DarkAndLightModePreview
-@Composable
-fun RadioButtonCardOffPreview() {
-    MedicineReminderTheme {
-        Surface {
-            RadioButtonItem(
-                text = "English",
-                onClick = {},
-                selected = true,
+            CheckBoxComponent(
+                checked = checked,
+                text = "Avoid tea or milk within 3 hours of taking this medication.",
+                onCheckedChange = { checked = it }
             )
         }
     }

@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.example.medicinereminder.R
 import com.example.medicinereminder.core.components.list_items.SimpleDatePickerItem
 import com.example.medicinereminder.core.utility.extension.listFromRange
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)

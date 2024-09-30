@@ -55,7 +55,12 @@ fun CustomDatePickerDialog(
                     onClick = {
                         onConfirmClick(date)
                         onDismissRequest()
-                    }) {
+                    },
+                    modifier = Modifier.padding(
+                        end = MaterialTheme.spacing.small8,
+                        bottom = MaterialTheme.spacing.medium24
+                    )
+                ) {
                     Text(text = stringResource(id = confirmButtonText))
                 }
             },

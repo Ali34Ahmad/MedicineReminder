@@ -16,6 +16,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,8 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicinereminder.R
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
-import com.example.medicinereminder.ui.theme.Pink
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
 fun ToolTipWithAction(
@@ -44,7 +45,7 @@ fun ToolTipWithAction(
             .fillMaxWidth()
             .clip(RoundedCornerShape(16)),
         colors = CardDefaults.cardColors(
-            containerColor = Pink
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer
         )
     ) {
         Row(
@@ -56,14 +57,14 @@ fun ToolTipWithAction(
         ){
             Icon(
                 imageVector = Icons.Default.Face,
-                contentDescription = stringResource(R.string.light_bulb),
+                contentDescription = null,
                 modifier = Modifier
                     .padding(bottom = 22.dp)
                     .size(18.dp),
 
             )
             Text(
-                stringResource(R.string.tool_tip_msg),
+                stringResource(R.string.restock_msg),
                 modifier = Modifier
                     .width(222.dp)
                     .height(40.dp),
@@ -92,6 +93,8 @@ fun ToolTipWithAction(
 @Composable
 fun TooltipWithActionPreview() {
     MedicineReminderTheme {
-        ToolTipWithAction(onClick ={}, medicineId = 0)
+        Surface {
+            ToolTipWithAction(onClick ={}, medicineId = 0)
+        }
     }
 }

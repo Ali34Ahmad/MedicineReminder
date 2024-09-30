@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 
 @Composable
@@ -35,7 +35,7 @@ fun MedicineReminderImage(
     ) {
         Image(
             painter = image,
-            contentDescription = stringResource(R.string.medicine_image),
+            contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
                 .size(

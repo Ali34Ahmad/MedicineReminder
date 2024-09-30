@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.medicinereminder.core.components.list_items.AppointmentTableItem
 import com.example.medicinereminder.core.enums.AppointmentState
 import com.example.medicinereminder.core.model.AppointmentTableItemInfo
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
 fun AppointmentTable(
@@ -24,7 +24,7 @@ fun AppointmentTable(
         verticalArrangement = Arrangement.Top
     ) {
         TitlesRow(
-            titles = arrayOf("Date","Time","Modified at"),
+            titles = arrayOf("Date", "Time", "Modified at"),
         )
         tableItems.forEach { item ->
             HorizontalDivider()
@@ -40,32 +40,34 @@ fun AppointmentTable(
 fun AppointmentTablePreview() {
     MedicineReminderTheme {
         AppointmentTable(
-            tableItems = listOf(
-                AppointmentTableItemInfo(
-                    date = "Sep 10, 2024",
-                    time = "12:00 PM",
-                    modifiedAt = "Sep 5, 2024",
-                    state = AppointmentState.COMPLETED
-                ),
-                AppointmentTableItemInfo(
-                    date = "Sep 10, 2024",
-                    time = "12:00 PM",
-                    modifiedAt = "Sep 5, 2024",
-                    state = AppointmentState.PENDING
-                ),
-                AppointmentTableItemInfo(
-                    date = "Sep 10, 2024",
-                    time = "12:00 PM",
-                    modifiedAt = "Sep 5, 2024",
-                    state = AppointmentState.STOPPED
-                ),
-                AppointmentTableItemInfo(
-                    date = "Sep 10, 2024",
-                    time = "12:00 PM",
-                    modifiedAt = "Sep 5, 2024",
-                    state = AppointmentState.PENDING
-                )
-            )
+            tableItems = appointmentTableItems
         )
     }
 }
+
+val appointmentTableItems = listOf(
+    AppointmentTableItemInfo(
+        date = "Sep 10, 2024",
+        time = "12:00 PM",
+        modifiedAt = "Sep 5, 2024",
+        state = AppointmentState.COMPLETED
+    ),
+    AppointmentTableItemInfo(
+        date = "Sep 10, 2024",
+        time = "12:00 PM",
+        modifiedAt = "Sep 5, 2024",
+        state = AppointmentState.PENDING
+    ),
+    AppointmentTableItemInfo(
+        date = "Sep 10, 2024",
+        time = "12:00 PM",
+        modifiedAt = "Sep 5, 2024",
+        state = AppointmentState.STOPPED
+    ),
+    AppointmentTableItemInfo(
+        date = "Sep 10, 2024",
+        time = "12:00 PM",
+        modifiedAt = "Sep 5, 2024",
+        state = AppointmentState.PENDING
+    )
+)

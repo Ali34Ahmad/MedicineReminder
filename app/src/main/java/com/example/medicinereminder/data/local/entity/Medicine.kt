@@ -51,4 +51,5 @@ data class Medicine(
     @ColumnInfo(name = RoomConstants.Medicine.LAST_MODIFIED_DATE) val lastModifiedDate:Long,
     @ColumnInfo(name = RoomConstants.Medicine.TOTAL_MEDICATION_DURATION) val totalMedicationDuration:Long?=null,
     @ColumnInfo(name = RoomConstants.Medicine.START_DATE) val startDate:Long,
+    @ColumnInfo(name = RoomConstants.Medicine.IMAGE_FILE_NAME) val imageFileName: String,
 )

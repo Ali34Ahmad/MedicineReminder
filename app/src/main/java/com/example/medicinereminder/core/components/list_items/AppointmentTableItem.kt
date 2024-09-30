@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicinereminder.core.enums.AppointmentState
 import com.example.medicinereminder.core.model.AppointmentTableItemInfo
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
 fun AppointmentTableItem(

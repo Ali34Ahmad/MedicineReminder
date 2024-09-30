@@ -18,7 +18,7 @@ import com.example.medicinereminder.R
 import com.example.medicinereminder.core.components.images.MedicineReminderImage
 import com.example.medicinereminder.core.components.texts.TitleDesc
 import com.example.medicinereminder.core.components.texts.TrailingTimeItem
-import com.example.medicinereminder.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
 fun MedicineReminderItem(
