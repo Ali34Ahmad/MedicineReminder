@@ -14,12 +14,14 @@ object RoomConstants {
         const val LAST_MODIFIED_DATE = "last_modified_date"
         const val TOTAL_MEDICATION_DURATION = "total_medication_duration"
         const val START_DATE = "start_date"
+        const val IMAGE_FILE_NAME = "image_file_name"
         const val ID = "id"
     }
 
     object Doctor {
         const val TABLE_NAME = "doctor"
         const val PHONE_NUMBER = "phone_number"
+        const val IMAGE_FILE_NAME = "image_file_name"
         const val ID = "id"
     }
 

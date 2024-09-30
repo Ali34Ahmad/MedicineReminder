@@ -13,7 +13,8 @@ data class Doctor(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val specialty: String,
-    @Embedded val address: Address?=null,
-    @Embedded val location: Location?=null,
-    @ColumnInfo(name = RoomConstants.Doctor.PHONE_NUMBER) val phoneNumber: String?=null,
+    @Embedded val address: Address? = null,
+    @Embedded val location: Location? = null,
+    @ColumnInfo(name = RoomConstants.Doctor.PHONE_NUMBER) val phoneNumber: String? = null,
+    @ColumnInfo(name = RoomConstants.Doctor.IMAGE_FILE_NAME) val imageFileName: String,
 )
