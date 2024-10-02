@@ -4,7 +4,7 @@ activity = "1.9.2"
 activityKtx = "1.9.2"
 agp = "8.5.2"
 desugarJdkLibs = "1.2.0"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -19,13 +19,15 @@ roomKtx = "2.6.1"
 roomVersion = "2.6.1"
 
 #Plugins
-kspPluginVersion="2.0.0-1.0.21"
+kspPluginVersion="2.0.10-1.0.24"
 runner = "1.6.2"
 rules = "1.6.1"
 junitKtx = "1.2.1"
 runtime = "1.7.2"
 
-#UI
+#Dagger Hilt
+hiltVesion = "2.51.1"
+hiltNavigationCompose = "1.2.0"
 
 
 
@@ -62,6 +64,13 @@ androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref
 #Desugar Libraries
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 
+#Dagger Hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVesion" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVesion" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVesion" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+
+
 [bundles]
 #Local DB
 room-database=["androidx-room-runtime",]
@@ -70,7 +79,7 @@ room-database=["androidx-room-runtime",]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+dagger-hilt-android-plugin = {id ="com.google.dagger.hilt.android",version.ref = "hiltVesion" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspPluginVersion" }
 
 #Room Migration

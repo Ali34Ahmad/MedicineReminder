@@ -5,9 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.medicinereminder.data.local.dao.AlternativeMedicinesDao
+import com.example.medicinereminder.data.local.dao.AppointmentDao
 import com.example.medicinereminder.data.local.dao.ConflictDao
+import com.example.medicinereminder.data.local.dao.CycleProgramDao
 import com.example.medicinereminder.data.local.dao.DayProgramDao
+import com.example.medicinereminder.data.local.dao.DoctorDao
 import com.example.medicinereminder.data.local.dao.MedicineDao
+import com.example.medicinereminder.data.local.dao.MedicineReminderDao
+import com.example.medicinereminder.data.local.dao.PharmaceuticalFormDao
 import com.example.medicinereminder.data.local.dao.TimeDao
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
 import com.example.medicinereminder.data.local.entity.Appointment
@@ -45,6 +50,11 @@ abstract class AppDatabase:RoomDatabase() {
     abstract fun alternativeMedicinesDao(): AlternativeMedicinesDao
     abstract fun dayProgramDao(): DayProgramDao
     abstract fun timeDao(): TimeDao
+    abstract fun medicineReminderDao(): MedicineReminderDao
+    abstract fun pharmaceuticalFormDao(): PharmaceuticalFormDao
+    abstract fun doctorDao(): DoctorDao
+    abstract fun cycleProgramDao(): CycleProgramDao
+    abstract fun appointmentDao(): AppointmentDao
 
     companion object {
 

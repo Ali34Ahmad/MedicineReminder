@@ -11,4 +11,5 @@ data class PharmaceuticalForm(
     val name: String,
     @ColumnInfo(name = RoomConstants.PharmaceuticalForm.IS_ADDED_BY_USER)
     val isAddedByUser:Boolean,
+    //@ColumnInfo(name = RoomConstants.PharmaceuticalForm.MEDICINE_ID) val medicineId: Int
 )

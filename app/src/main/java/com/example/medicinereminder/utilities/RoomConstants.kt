@@ -29,6 +29,7 @@ object RoomConstants {
         const val TABLE_NAME = "pharmaceutical_form"
         const val IS_ADDED_BY_USER = "is_added_by_user"
         const val ID = "id"
+        const val MEDICINE_ID = "medicine_id"
     }
 
     object Conflict {

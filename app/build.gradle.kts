@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.room)
+    alias(libs.plugins.dagger.hilt.android.plugin)
 }
 
 android {
@@ -92,6 +93,12 @@ dependencies {
 
     //Desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    //hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
 }
 
 room {

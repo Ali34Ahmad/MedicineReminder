@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.medicinereminder.R
-import com.example.medicinereminder.core.components.cards.RadioButtonItem
+import com.example.medicinereminder.common.components.cards.RadioButtonItem
 import com.example.medicinereminder.data.local.conflict
 import com.example.medicinereminder.presentation.ui.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.model.SelectableItem
