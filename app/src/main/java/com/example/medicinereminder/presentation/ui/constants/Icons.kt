@@ -31,6 +31,7 @@ object Icons{
         val Close= R.drawable.ic_close
         val ArrowBack= R.drawable.ic_arrow_back
         val ArrowForward= R.drawable.ic_arrow_forward
+        val ArrowRight= R.drawable.ic_arrow_right
         val ArrowDropDown= R.drawable.ic_arrow_drop_down
         val ArrowDropUp= R.drawable.ic_arrow_drop_up
         val Search= R.drawable.ic_search

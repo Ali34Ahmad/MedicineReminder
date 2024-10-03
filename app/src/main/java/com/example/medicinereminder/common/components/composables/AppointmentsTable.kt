@@ -1,73 +1,79 @@
 package com.example.medicinereminder.common.components.composables
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.medicinereminder.core.components.list_items.AppointmentTableItem
-import com.example.medicinereminder.common.enums.AppointmentState
+import com.example.medicinereminder.common.components.list_item.AppointmentTableItem
 import com.example.medicinereminder.common.model.AppointmentTableItemInfo
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
+import com.example.medicinereminder.presentation.ui.constants.appointmentsTableTitles
+import com.example.medicinereminder.presentation.ui.helper.appointmentTableItems
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
 fun AppointmentTable(
     modifier: Modifier = Modifier,
-    tableItems: List<AppointmentTableItemInfo> = emptyList()
+    tableItems: List<AppointmentTableItemInfo> = emptyList(),
+    onItemLongClick:(index:Int)->Unit,
 ) {
-    Column(
+    var firstItemIsSelected by rememberSaveable {
+        mutableStateOf(false)
+    }
+    if (tableItems.isNotEmpty()) firstItemIsSelected = tableItems[0].selected
+
+    LazyColumn(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TitlesRow(
-            titles = arrayOf("Date", "Time", "Modified at"),
-        )
-        tableItems.forEach { item ->
-            HorizontalDivider()
-            AppointmentTableItem(
-                appointmentTableItemInfo = item
+        item {
+            TitlesRow(
+                titles = appointmentsTableTitles.toIntArray(),
+                firstItemIsSelected = firstItemIsSelected,
             )
+        }
+
+        items(tableItems.size) { index ->
+
+            var nextItemIsSelected=false
+            if (index+1<=tableItems.lastIndex) nextItemIsSelected=tableItems[index+1].selected
+
+            AppointmentTableItem(
+                appointmentTableItemInfo = tableItems[index],
+                nextItemIsSelected=nextItemIsSelected,
+                onLongClick = onItemLongClick,
+                currentIndex = index,
+            )
+            if (nextItemIsSelected){
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    color = MaterialTheme.colorScheme.surface,
+                )
+            }
         }
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun AppointmentTablePreview() {
     MedicineReminderTheme {
-        AppointmentTable(
-            tableItems = appointmentTableItems
-        )
+        Surface {
+            AppointmentTable(
+                tableItems = appointmentTableItems,
+                onItemLongClick = {},
+            )
+        }
     }
 }
-
-val appointmentTableItems = listOf(
-    AppointmentTableItemInfo(
-        date = "Sep 10, 2024",
-        time = "12:00 PM",
-        modifiedAt = "Sep 5, 2024",
-        state = AppointmentState.COMPLETED
-    ),
-    AppointmentTableItemInfo(
-        date = "Sep 10, 2024",
-        time = "12:00 PM",
-        modifiedAt = "Sep 5, 2024",
-        state = AppointmentState.PENDING
-    ),
-    AppointmentTableItemInfo(
-        date = "Sep 10, 2024",
-        time = "12:00 PM",
-        modifiedAt = "Sep 5, 2024",
-        state = AppointmentState.STOPPED
-    ),
-    AppointmentTableItemInfo(
-        date = "Sep 10, 2024",
-        time = "12:00 PM",
-        modifiedAt = "Sep 5, 2024",
-        state = AppointmentState.PENDING
-    )
-)

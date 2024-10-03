@@ -259,7 +259,11 @@ fun MedicineReminderTheme(
         else -> LightColorScheme
     }
 
-    CompositionLocalProvider(value = LocalSpacing provides Spacing()) {
+    CompositionLocalProvider(
+        LocalSpacing provides Spacing(),
+        LocalSizing provides Sizing(),
+        LocalAdditionalShapes provides AdditionalShapes(),
+    ) {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = typography,

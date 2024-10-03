@@ -1,4 +1,4 @@
-package com.example.medicinereminder.common.components.list_items
+package com.example.medicinereminder.common.components.list_item
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.border
@@ -38,8 +38,7 @@ fun ClickableIconAndText(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
-            .height(44.dp),
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -63,7 +62,7 @@ fun ClickableIconAndText(
         Spacer(modifier = Modifier.width(16.dp))
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(vertical = 6.dp),
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.Start

@@ -1,28 +1,32 @@
-package com.example.medicinereminder.common.components.text_fields
+package com.example.medicinereminder.common.components.text_field
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.medicinereminder.R
+import com.example.medicinereminder.presentation.ui.constants.Icons
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
-fun MedicineReminderTextField(
+fun OutlinedTextFieldComponent(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
-    label: String,
+    @StringRes label: Int,
     isError: Boolean = false,
     isRequired: Boolean = false,
     buttonText: String? = null,
@@ -34,12 +38,12 @@ fun MedicineReminderTextField(
         onValueChange = onValueChange,
         modifier = modifier.fillMaxWidth(),
         isError = isError,
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
-        ),
+
         label = {
-            Text(text = if (isRequired) label.plus(" *") else label)
+            Text(text = if (isRequired)
+                stringResource(label).plus(" *")
+            else stringResource(label)
+            )
         },
         trailingIcon = {
                 buttonText?.let{
@@ -54,7 +58,7 @@ fun MedicineReminderTextField(
                 }
                 buttonIcon?.let {
                     Icon(
-                        painter = painterResource(id = it),
+                        imageVector = ImageVector.vectorResource(id = it),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary
                     )
@@ -63,58 +67,66 @@ fun MedicineReminderTextField(
     )
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun MedicineReminderTextFieldPreview() {
     MedicineReminderTheme {
-        MedicineReminderTextField(
-            value = "Hello",
-            onValueChange = {},
-            label = "Medicine Name",
-            isRequired = true
-        )
+        Surface{
+            OutlinedTextFieldComponent(
+                value = "Hello",
+                onValueChange = {},
+                label = R.string.medicine_name,
+                isRequired = true
+            )
+        }
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun MedicineReminderTextFieldWithTextActionPreview() {
     MedicineReminderTheme {
-        MedicineReminderTextField(
-            value = "Hello",
-            onValueChange = {},
-            label = "Medicine Name",
-            isRequired = true,
-            buttonText = "save"
-        )
+        Surface{
+            OutlinedTextFieldComponent(
+                value = "Hello",
+                onValueChange = {},
+                label = R.string.medicine_name,
+                isRequired = true,
+                buttonText = "save"
+            )
+        }
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun MedicineReminderTextFieldWithIconActionPreview() {
     MedicineReminderTheme {
-        MedicineReminderTextField(
-            value = "Hello",
-            onValueChange = {},
-            label = "Medicine Name",
-            isRequired = true,
-            buttonIcon = R.drawable.baseline_expand_more_24,
-        )
+        Surface{
+            OutlinedTextFieldComponent(
+                value = "Hello",
+                onValueChange = {},
+                label = R.string.medicine_name,
+                isRequired = true,
+                buttonIcon = Icons.Outlined.ArrowDropDown,
+            )
+        }
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun MedicineReminderTextFieldErrorPreview() {
     MedicineReminderTheme {
-        MedicineReminderTextField(
-            value = "Hello",
-            onValueChange = {},
-            label = "Medicine Name",
-            isRequired = true,
-            isError = true,
-            buttonText = "save"
-        )
+        Surface{
+            OutlinedTextFieldComponent(
+                value = "Hello",
+                onValueChange = {},
+                label = R.string.medicine_name,
+                isRequired = true,
+                isError = true,
+                buttonText = "save"
+            )
+        }
     }
 }

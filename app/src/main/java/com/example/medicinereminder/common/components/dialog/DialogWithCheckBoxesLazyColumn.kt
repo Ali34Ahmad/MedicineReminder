@@ -3,7 +3,6 @@ package com.example.medicinereminder.common.components.dialog
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -15,7 +14,7 @@ import androidx.compose.ui.Modifier
 import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.check_box.CheckBoxComponent
 import com.example.medicinereminder.data.local.conflict
-import com.example.medicinereminder.presentation.ui.DarkAndLightModePreview
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.model.SelectableItem
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing

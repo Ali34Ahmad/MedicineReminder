@@ -88,6 +88,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.runtime)
+    implementation(libs.androidx.material)
 
 
     //Desugar

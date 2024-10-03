@@ -1,4 +1,4 @@
-package com.example.medicinereminder.presentation.ui
+package com.example.medicinereminder.presentation.ui.helper
 
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview

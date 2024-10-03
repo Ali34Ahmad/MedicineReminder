@@ -9,9 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.medicinereminder.R
-import com.example.medicinereminder.presentation.ui.DarkAndLightModePreview
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
-import org.hamcrest.Description
 
 @Composable
 fun DialogWithTitleAndDescription(

@@ -1,4 +1,4 @@
-package com.example.medicinereminder.common.components.list_items
+package com.example.medicinereminder.common.components.list_item
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement

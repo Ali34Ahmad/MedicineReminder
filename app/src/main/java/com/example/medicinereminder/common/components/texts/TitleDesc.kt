@@ -1,61 +1,57 @@
 package com.example.medicinereminder.common.components.texts
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.style.TextOverflow
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
-fun TitleDesc(
+fun TitleAndTime(
     modifier: Modifier = Modifier,
-    title:String,
-    desc:String,
-    isWarning: Boolean = false
+    title: String,
+    time:String,
 ) {
-    Column(
+    Row(
         modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween
-    ){
+    ) {
         Text(
             text = title,
-            style = TextStyle(
-                fontWeight = FontWeight.W500,
-                fontSize = 16.sp
-            )
+            style = MaterialTheme.typography.titleMedium,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f),
         )
-        val color = if (isWarning)
-                            MaterialTheme.colorScheme.error
-                        else
-                            MaterialTheme.colorScheme.onSurfaceVariant
+
         Text(
-            text = desc,
-            style = TextStyle(
-                fontWeight = FontWeight.W400,
-                fontSize = 14.sp,
-                color = color
-            )
-            )
+            text = time,
+            style = MaterialTheme.typography.bodySmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
     }
 }
 
-@Preview( showBackground = true, showSystemUi = false)
+@DarkAndLightModePreview
 @Composable
 fun TitleDescPreview() {
-    MaterialTheme {
-        TitleDesc(title = "Vitamin D", desc = "1 Pill" )
+    MedicineReminderTheme {
+        Surface {
+            TitleAndTime(title = "Vitamin D", time = "12:30 PM")
+        }
     }
 }
 
-@Preview( showBackground = true, showSystemUi = false)
+@DarkAndLightModePreview
 @Composable
 fun TitleDescWarningPreview() {
-    MaterialTheme {
-        TitleDesc(title = "Vitamin D", desc = "Out of stock", isWarning = true )
+    MedicineReminderTheme {
+        Surface {
+            TitleAndTime(title = "Vitamin D", time = "12:30 PM")
+        }
     }
 }

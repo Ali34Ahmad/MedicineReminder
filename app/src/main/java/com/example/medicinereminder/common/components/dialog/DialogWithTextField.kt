@@ -9,7 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.medicinereminder.R
-import com.example.medicinereminder.presentation.ui.DarkAndLightModePreview
+import com.example.medicinereminder.common.components.text_field.OutlinedTextFieldComponent
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
 @Composable
@@ -32,11 +33,11 @@ fun DialogWithTextField(
             onDismissRequest = onDismissRequest,
             title = { Text(text = stringResource(id = title)) },
             text = {
-                //TODO("Add Text Field")
-//                TextFieldComponent(
-//                    label = textFieldLabel,
-//                    value = textFieldValue,
-//                    onValueChange = {},
+                OutlinedTextFieldComponent(
+                    label = textFieldLabel,
+                    value = textFieldValue,
+                    onValueChange = onValueChange,
+                )
             },
             confirmButton = {
                 TextButton(onClick = onConfirmClick,

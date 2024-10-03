@@ -17,7 +17,7 @@ val doctor1 = Doctor(
     imageFileName = ""
 )
 val medicine1 = Medicine(
-    id=1,
+    id = 1,
     name = "Paracetamol",
     companyName = "ABC",
     doctorId = 1,
@@ -29,9 +29,261 @@ val medicine1 = Medicine(
     lastModifiedDate = 8888888888,
     imageFileName = ""
 )
-val pharmaceuticalForm1 = PharmaceuticalForm(
-    name = "Capsule",
-    isAddedByUser = false
+val pharmaceuticalForms = listOf(
+    PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = false
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),PharmaceuticalForm(
+        name = "Capsule",
+        isAddedByUser = true
+    ),
+    PharmaceuticalForm(
+        name = "Tablet",
+        isAddedByUser = true
+    ),
+    PharmaceuticalForm(
+        name = "Syrup",
+        isAddedByUser = true
+    ),
+    PharmaceuticalForm(
+        name = "Suspension",
+        isAddedByUser = true
+    ),
+    PharmaceuticalForm(
+        name = "Injection",
+        isAddedByUser = true
+    ),
+    PharmaceuticalForm(
+        name = "Suppository",
+        isAddedByUser = false
+    ),
 )
 val dayProgram = DayProgram(
     medicineId = 1,
@@ -46,7 +298,7 @@ val time = Time(
     lastModifiedDate = 33333333,
     time = 11111111111
 )
-val conflict= Conflict(
+val conflict = Conflict(
     description = "Avoid tea or milk within 3 hours of taking this medication.",
     medicineId = 1
 )

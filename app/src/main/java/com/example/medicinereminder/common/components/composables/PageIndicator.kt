@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,7 +33,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.sizing
+import com.example.medicinereminder.presentation.ui.theme.spacing
 
 @Composable
 fun PageIndicator(
@@ -77,8 +81,8 @@ fun PageIndicator(
 
             Box(
                 modifier = Modifier
-                    .padding(12.dp)
-                    .size(scaleY.times(6).dp, 6.dp)
+                    .padding(MaterialTheme.spacing.small2)
+                    .size(scaleY.times(6).dp, MaterialTheme.sizing.small6)
 
                     .clip(CircleShape)
                     .background(color)
@@ -88,24 +92,25 @@ fun PageIndicator(
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun PageIndicatorPreview() {
+    var currentPage by remember{
+        mutableIntStateOf(1)
+    }
     MedicineReminderTheme {
-        var currentPage by remember{
-            mutableIntStateOf(1)
-        }
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            PageIndicator(
-                currentPage = currentPage,
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { currentPage++ }) {
-                Text(text = "Next")
+        Surface{
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                PageIndicator(
+                    currentPage = currentPage,
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(onClick = { currentPage++ }) {
+                    Text(text = "Next")
+                }
             }
         }
-
     }
 }
