@@ -1,8 +1,8 @@
 package com.example.medicinereminder.common.components.texts
 
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

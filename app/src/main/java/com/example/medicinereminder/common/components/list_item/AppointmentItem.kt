@@ -38,7 +38,7 @@ fun AppointmentItem(
 ) {
     val doctorImage = image ?: defaultImage
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -74,6 +74,18 @@ fun AppointmentItemPreview() {
             doctorName = "Ali Mansoura",
             speciality = "Ophthalmologist",
             time = "9:00 AM",
+        )
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun AppointmentItemWithIconPreview() {
+    MedicineReminderTheme {
+        AppointmentItem(
+            doctorName = "Ali Mansoura",
+            speciality = "Ophthalmologist",
+            time = "9:00 AM",
+            icon = R.drawable.ic_clock_outlined
         )
     }
 }

@@ -47,7 +47,6 @@ import javax.inject.Singleton
     @Provides
     fun provideDayProgramDao(appDatabase: AppDatabase): DayProgramDao =
         appDatabase.dayProgramDao()
-
     @Provides
     fun provideAlternativeMedicineDao(appDatabase: AppDatabase): AlternativeMedicinesDao =
         appDatabase.alternativeMedicinesDao()

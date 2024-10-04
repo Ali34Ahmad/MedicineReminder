@@ -56,7 +56,7 @@
     <string name="time">Time</string>
     <string name="modified_at">Modified at</string>
     <string name="medicine_name">Medicine name</string>
-    <string name="restock_msg">Time to restock! You have 2 medications that are running low.</string>
+    <string name="restock_msg">Time to restock! You have %d medications that are running low.</string>
     <string name="go_to_refill_msg">Go to refill</string>
     <string name="pick_a_date">Pick a date</string>
     <string name="use_calender">Use Calendar</string>
@@ -64,4 +64,11 @@
     <string name="choose_which_items_to_remove">Choose which items you\'d like to remove</string>
     <string name="edit_interactions">Edit Interactions</string>
     <string name="choose_which_one_to_edit">Choose which one you\'d like to edit</string>
+    <string name="conflicts">Conflicts</string>
+    <string name="out_of_stock">Out of stock\n</string>
+    <string name="mark_as_taken">Mark as taken</string>
+    <string name="mark_as_missed">Mark as missed</string>
+    <string name="edit_date_and_time">Edit date and time</string>
+    <string name="stop_reminder">Stop reminder</string>
+    <string name="delete_medicine">Delete Medicine</string>
 </resources>

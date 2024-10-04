@@ -6,6 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.medicinereminder.data.enums.ReminderState
+import com.example.medicinereminder.data.model.Reminder
 import com.example.medicinereminder.utilities.RoomConstants
 
 @Entity(
@@ -28,11 +29,11 @@ import com.example.medicinereminder.utilities.RoomConstants
     ]
 )
 data class MedicineReminder(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) override val id: Int = 0,
     @ColumnInfo(name = RoomConstants.MedicineReminder.MEDICINE_ID) val medicineId: Int,
-    @ColumnInfo(name = RoomConstants.MedicineReminder.DATE_TIME) val dateTime: Long,
+    @ColumnInfo(name = RoomConstants.MedicineReminder.DATE_TIME) override val dateTime: Long,
     @ColumnInfo(name = RoomConstants.MedicineReminder.DOSE_AMOUNT) val doseAmount: Int,
     @ColumnInfo(name = RoomConstants.MedicineReminder.DATE_ADDED) val dateAdded: Long,
     @ColumnInfo(name = RoomConstants.MedicineReminder.IS_REFILL_REMINDER) val isRefillReminder: Boolean,
     val reminderState: ReminderState,
-)
+): Reminder

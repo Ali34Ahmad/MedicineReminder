@@ -23,7 +23,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
-import com.example.medicinereminder.common.components.texts.FirstAndSecondSubText
 import com.example.medicinereminder.common.components.texts.TitleAndTime
 import com.example.medicinereminder.presentation.ui.constants.Icons
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
@@ -36,7 +35,7 @@ fun MedicineItem(
     image: Painter? = null,
     medicineName: String,
     desc: String,
-    @DrawableRes icon: Int,
+    @DrawableRes icon: Int?,
     @DrawableRes defaultImage: Int = R.drawable.pharmacy,
     isWarning: Boolean = false
 ) {
@@ -56,7 +55,7 @@ fun MedicineItem(
         horizontalArrangement = Arrangement.Start
     ) {
         Image(
-            painter = painterResource(id = R.drawable.doctor_default_image),
+            painter = painterResource(id = defaultImage),
             contentDescription = null,
             modifier = Modifier
                 .size(MaterialTheme.sizing.large52)
@@ -66,12 +65,15 @@ fun MedicineItem(
         Spacer(modifier = Modifier.width(16.dp))
         TitleAndTime(title = medicineName, time = desc)
         //FirstAndSecondSubText(title = medicineName, subtitle = desc, isWarning = isWarning)
-        Spacer(modifier = Modifier.weight(1f))
-        Icon(
-            imageVector = ImageVector.vectorResource(id = icon),
-            contentDescription = null,
-            tint = color,
-        )
+        icon?.let {
+            Spacer(modifier = Modifier.weight(1f))
+            Icon(
+                imageVector = ImageVector.vectorResource(id = icon),
+                contentDescription = null,
+                tint = color,
+            )
+        }
+
     }
 }
 

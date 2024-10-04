@@ -99,13 +99,19 @@ interface MedicineDao {
     fun getMedicineReminderInfo(medicineId: Int) :Flow<MedicineReminderInfo>
 
 
+
+    @Transaction
     @Query("""
-        SELECT medicine.id
-        FROM medicine INNER JOIN medicine_reminder
-        WHERE medicine_reminder.date_time BETWEEN
-        strftime('%s', 'now', 'start of day') * 1000 AND
-        strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
+        SELECT * 
+        FROM medicine
+        WHERE id in (
+            SELECT medicine_id
+            FROM medicine_reminder
+            WHERE date_time BETWEEN
+            strftime('%s', 'now', 'start of day') * 1000 AND
+            strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
+        )
     """)
-    fun  getDailyMedicineIds(): Flow<List<Int>>
+    fun getDailyMedicineReminders() : Flow<List<MedicineReminderInfo>>
 
 }

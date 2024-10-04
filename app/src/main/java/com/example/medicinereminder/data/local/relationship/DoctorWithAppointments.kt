@@ -14,5 +14,5 @@ data class DoctorWithAppointments(
         parentColumn = RoomConstants.Doctor.ID,
         entityColumn = RoomConstants.Appointment.DOCTOR_ID
     )
-    val list: List<Appointment>
+    val appointments: List<Appointment>
 )
