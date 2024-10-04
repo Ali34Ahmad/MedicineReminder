@@ -17,7 +17,9 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,14 +27,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             MedicineReminderTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Surface(modifier = Modifier.padding(innerPadding)) {
+                    Surface(modifier = Modifier.padding(innerPadding)){
 
                     }
-                }
             }
         }
     }
-}
+}}
+
 
 @Preview(showBackground = true)
 @Composable

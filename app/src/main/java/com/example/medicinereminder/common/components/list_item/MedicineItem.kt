@@ -23,8 +23,10 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
+import com.example.medicinereminder.common.components.texts.FirstAndSecondSubText
 import com.example.medicinereminder.common.components.texts.TitleAndTime
 import com.example.medicinereminder.presentation.ui.constants.Icons
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.sizing
 import com.example.medicinereminder.presentation.ui.theme.spacing
 
@@ -63,6 +65,7 @@ fun MedicineItem(
         )
         Spacer(modifier = Modifier.width(16.dp))
         TitleAndTime(title = medicineName, time = desc)
+        //FirstAndSecondSubText(title = medicineName, subtitle = desc, isWarning = isWarning)
         Spacer(modifier = Modifier.weight(1f))
         Icon(
             imageVector = ImageVector.vectorResource(id = icon),
@@ -72,7 +75,7 @@ fun MedicineItem(
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun MedicineItemPreview() {
     MaterialTheme {

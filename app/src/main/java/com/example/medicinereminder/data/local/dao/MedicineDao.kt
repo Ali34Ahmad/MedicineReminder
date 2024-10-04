@@ -7,15 +7,18 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
-import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.data.local.entity.Medicine
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
+import com.example.medicinereminder.data.local.medicine1
+import com.example.medicinereminder.data.local.relationship.MedicineReminderInfo
 import com.example.medicinereminder.data.local.relationship.MedicineWithAllDetails
 import com.example.medicinereminder.data.local.relationship.MedicineWithAlternativeMedicines
 import com.example.medicinereminder.data.local.relationship.MedicineWithConflicts
 import com.example.medicinereminder.data.local.relationship.MedicineWithDayProgramsAndTimes
 import com.example.medicinereminder.data.local.relationship.MedicineWithDoctor
+import com.example.medicinereminder.data.local.relationship.MedicineWithMedicineReminder
 import com.example.medicinereminder.data.local.relationship.MedicineWithPharmaceuticalForm
+import kotlinx.coroutines.flow.Flow
+import java.util.Collections.emptyList
 
 typealias MedicineId = Long
 typealias DoctorId = Long
@@ -27,7 +30,7 @@ interface MedicineDao {
     suspend fun addNewMedicine(medicine: Medicine): MedicineId
 
     @Query("SELECT * FROM medicine WHERE id = :medicineId")
-    suspend fun getMedicineById(medicineId: Long): Medicine
+    fun getMedicineById(medicineId: Long): Medicine
 
     @Transaction
     @Query("SELECT * FROM medicine")
@@ -61,7 +64,7 @@ interface MedicineDao {
     @Transaction
     suspend fun getMedicineFromAlternativeMedicines(originalMedicineId: Long):List<Medicine>{
         val medicineWithAlternativeMedicines:MedicineWithAlternativeMedicines = getMedicineWithAlternativeMedicines(originalMedicineId)
-        val alternativeMedicinesList= mutableListOf<Medicine>()
+        val alternativeMedicinesList:MutableList<Medicine> = emptyList()
         medicineWithAlternativeMedicines.alternativeMedicines.forEach {
             alternativeMedicinesList.add(
                 getMedicineById(it.alternativeMedicineId.toLong())
@@ -90,4 +93,19 @@ interface MedicineDao {
 
     @Update
     suspend fun updateMedicine(medicine: Medicine)
+
+    @Transaction
+    @Query("SELECT * FROM medicine WHERE id = :medicineId")
+    fun getMedicineReminderInfo(medicineId: Int) :Flow<MedicineReminderInfo>
+
+
+    @Query("""
+        SELECT medicine.id
+        FROM medicine INNER JOIN medicine_reminder
+        WHERE medicine_reminder.date_time BETWEEN
+        strftime('%s', 'now', 'start of day') * 1000 AND
+        strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
+    """)
+    fun  getDailyMedicineIds(): Flow<List<Int>>
+
 }

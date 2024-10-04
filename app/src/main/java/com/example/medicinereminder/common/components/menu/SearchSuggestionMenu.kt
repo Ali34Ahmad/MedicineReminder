@@ -33,7 +33,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
-import com.example.medicinereminder.data.local.doctor1
 import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.constants.Icons
@@ -193,7 +192,7 @@ fun DoctorSearchSuggestionMenuPreview() {
     MedicineReminderTheme {
         Surface {
             DoctorSearchSuggestionMenu(
-                doctors = listOf(doctor1,doctor1),
+                doctors = listOf(),
                 expanded = true,
                 onDismissRequest = {},
                 onItemClick = {},

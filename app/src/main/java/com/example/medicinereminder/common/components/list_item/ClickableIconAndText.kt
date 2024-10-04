@@ -1,5 +1,3 @@
-package com.example.medicinereminder.common.components.list_item
-
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement

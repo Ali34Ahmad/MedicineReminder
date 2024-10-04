@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.sizing
 import com.example.medicinereminder.presentation.ui.theme.spacing
+import androidx.compose.ui.unit.sp
+import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import java.time.LocalDate
 
 

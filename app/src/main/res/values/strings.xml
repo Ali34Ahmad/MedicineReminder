@@ -44,15 +44,7 @@
     <string name="add_form">Add Form</string>
     <string name="add">Add</string>
     <string name="form_name">Form name</string>
-    <string name="restock_msg">Time to restock! You have 2 medications that are running low. You are almost finished. This step is to specify your medicine timings.</string>
     <string name="almost_finished_msg">You are almost finished. This step is to specify your medicine timings.</string>
-    <string name="go_to_refill_msg">Go to refill</string>
-    <string name="pick_a_date">Pick a date</string>
-    <string name="use_calender">Use Calendar</string>
-    <string name="remove_interactions">Delete Interactions</string>
-    <string name="choose_which_items_to_remove">Choose which items you\'d like to remove</string>
-    <string name="edit_interactions">Edit Interactions</string>
-    <string name="choose_which_one_to_edit">Choose which one you\'d like to edit</string>
     <string name="mark_as">Mark as</string>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
@@ -64,4 +56,12 @@
     <string name="time">Time</string>
     <string name="modified_at">Modified at</string>
     <string name="medicine_name">Medicine name</string>
+    <string name="restock_msg">Time to restock! You have 2 medications that are running low.</string>
+    <string name="go_to_refill_msg">Go to refill</string>
+    <string name="pick_a_date">Pick a date</string>
+    <string name="use_calender">Use Calendar</string>
+    <string name="remove_interactions">Delete Interactions</string>
+    <string name="choose_which_items_to_remove">Choose which items you\'d like to remove</string>
+    <string name="edit_interactions">Edit Interactions</string>
+    <string name="choose_which_one_to_edit">Choose which one you\'d like to edit</string>
 </resources>
