@@ -9,7 +9,9 @@ import androidx.compose.ui.unit.dp
 
 data class AdditionalShapes(
     val default: Dp = 0.dp,
-    val medium28:Dp=28.dp,
+    val small8: Dp=8.dp,
+    val medium20: Dp = 20.dp,
+    val medium28: Dp = 28.dp,
 )
 
 val LocalAdditionalShapes = compositionLocalOf { AdditionalShapes() }

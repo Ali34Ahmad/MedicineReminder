@@ -1,4 +1,5 @@
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,83 +15,86 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicinereminder.R
+import com.example.medicinereminder.presentation.ui.constants.Icons
+import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.additionalShapes
+import com.example.medicinereminder.presentation.ui.theme.sizing
+import com.example.medicinereminder.presentation.ui.theme.spacing
 
 @Composable
 fun ClickableIconAndText(
     modifier: Modifier = Modifier,
     @DrawableRes icon: Int,
-    title: String,
-    desc: String
+    @StringRes title: Int,
+    @StringRes desc: Int,
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
-                .size(44.dp)
+                .size(MaterialTheme.sizing.large44)
                 .border(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.outlineVariant,
-                    shape = RoundedCornerShape(8)
-                )
-        ){
+                    shape = RoundedCornerShape(MaterialTheme.additionalShapes.small8)
+                ),
+            contentAlignment = Alignment.Center,
+        ) {
             Icon(
-                painter = painterResource(id = icon),
+                imageVector = ImageVector.vectorResource(id = icon),
                 contentDescription = null,
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .padding(4.dp)
             )
         }
-        Spacer(modifier = Modifier.width(16.dp))
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 6.dp),
+                .padding(start = MaterialTheme.spacing.medium16),
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = title,
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.W500
-                )
+                text = stringResource(title),
+                style = MaterialTheme.typography.bodyLarge,
             )
             Text(
-                text = desc,
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.W400
-                )
+                text = stringResource(desc),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = MaterialTheme.spacing.small4),
             )
         }
     }
 }
 
-@Preview(showBackground = true)
+@DarkAndLightModePreview
 @Composable
 fun ClickableIconAndTextPreview() {
     MedicineReminderTheme {
-        ClickableIconAndText(
-            icon = R.drawable.ic_launcher_foreground,
-            title = "title",
-            desc = "the description is here"
-        )
+        Surface {
+            ClickableIconAndText(
+                icon = Icons.Outlined.Phone,
+                title = R.string.add_phone_number,
+                desc = R.string.keep_doctor_handy,
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+            )
+        }
     }
 }

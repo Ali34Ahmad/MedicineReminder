@@ -1,5 +1,6 @@
 package com.example.medicinereminder.common.components.top_app_bar
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -22,13 +23,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
+import com.example.medicinereminder.common.components.text_field.ToolbarTextField
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.constants.Icons
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.sizing
 import com.example.medicinereminder.presentation.ui.theme.spacing
 
 @Composable
-fun TopAppBarWithTrailingIconButton(
+fun TopAppBarWithSearchIconButton(
     title: String,
     buttonIcon: @Composable () -> Unit,
     textFieldIsShowing: Boolean,
@@ -37,6 +40,7 @@ fun TopAppBarWithTrailingIconButton(
     onSearchIconClick: () -> Unit,
     showNavigateUpButton: Boolean,
     onNavigateUpClick: () -> Unit,
+    @StringRes searchTextFieldHintText:Int,
     modifier: Modifier = Modifier,
 ) {
     TopAppBarWrapper(
@@ -69,6 +73,7 @@ fun TopAppBarWithTrailingIconButton(
                 onSearchTextValueChange = onSearchTextValueChange,
                 onNavigateUpClick = {},
                 onClearButtonClick = {},
+                textFieldHintText = searchTextFieldHintText,
             )
         }
     }
@@ -80,12 +85,13 @@ private fun TopAppBarWithTextField(
     onSearchTextValueChange: (String) -> Unit,
     onNavigateUpClick: () -> Unit,
     onClearButtonClick: () -> Unit,
+    @StringRes textFieldHintText:Int,
     modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp),
+            .height(MaterialTheme.sizing.large52),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -96,27 +102,12 @@ private fun TopAppBarWithTextField(
                 contentDescription = stringResource(id = R.string.close_search)
             )
         }
-        TextField(
-            value = searchText,
-            onValueChange = onSearchTextValueChange,
+        ToolbarTextField(
+            searchText=searchText,
+            onSearchTextValueChange=onSearchTextValueChange,
+            hintText = textFieldHintText,
             modifier = Modifier
-                .fillMaxHeight()
                 .weight(1f),
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.surface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-            ),
-            singleLine = true,
-            maxLines = 1,
-            placeholder = {
-                Text(
-                    text = stringResource(id = R.string.name_or_specialty),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-            },
-            textStyle = MaterialTheme.typography.bodyLarge
         )
         IconButton(onClick = onClearButtonClick) {
             Icon(
@@ -132,7 +123,7 @@ private fun TopAppBarWithTextField(
 fun TopAppBarWithTitleAndSearchIconButtonPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTrailingIconButton(
+            TopAppBarWithSearchIconButton(
                 title = stringResource(id = R.string.app_name),
                 textFieldIsShowing = false,
                 searchText = "Sophie ",
@@ -146,6 +137,7 @@ fun TopAppBarWithTitleAndSearchIconButtonPreview() {
                         contentDescription = stringResource(R.string.search)
                     )
                 },
+                searchTextFieldHintText=R.string.name_or_specialty,
             )
         }
     }
@@ -156,7 +148,7 @@ fun TopAppBarWithTitleAndSearchIconButtonPreview() {
 fun TopAppBarWithTitleAndSearchWithNavigateUpIconButtonPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTrailingIconButton(
+            TopAppBarWithSearchIconButton(
                 title = stringResource(id = R.string.app_name),
                 textFieldIsShowing = false,
                 searchText = "Sophie ",
@@ -170,6 +162,7 @@ fun TopAppBarWithTitleAndSearchWithNavigateUpIconButtonPreview() {
                         contentDescription = stringResource(R.string.search)
                     )
                 },
+                searchTextFieldHintText=R.string.name_or_specialty,
             )
         }
     }
@@ -181,7 +174,7 @@ fun TopAppBarWithTitleAndSearchWithNavigateUpIconButtonPreview() {
 fun TopAppBarWithTitleAndSearchIconButtonWithTextFieldEmptyTextPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTrailingIconButton(
+            TopAppBarWithSearchIconButton(
                 title = stringResource(id = R.string.app_name),
                 textFieldIsShowing = true,
                 searchText = "",
@@ -194,7 +187,8 @@ fun TopAppBarWithTitleAndSearchIconButtonWithTextFieldEmptyTextPreview() {
                         imageVector = ImageVector.vectorResource(Icons.Outlined.Search),
                         contentDescription = stringResource(R.string.search)
                     )
-                }
+                },
+                searchTextFieldHintText=R.string.name_or_specialty,
             )
         }
     }
@@ -206,7 +200,7 @@ fun TopAppBarWithTitleAndSearchIconButtonWithTextFieldEmptyTextPreview() {
 fun TopAppBarWithTitleAndSearchIconButtonWithTextFieldPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTrailingIconButton(
+            TopAppBarWithSearchIconButton(
                 title = stringResource(id = R.string.app_name),
                 textFieldIsShowing = true,
                 searchText = "Sophie",
@@ -219,7 +213,8 @@ fun TopAppBarWithTitleAndSearchIconButtonWithTextFieldPreview() {
                         imageVector = ImageVector.vectorResource(Icons.Outlined.Search),
                         contentDescription = stringResource(R.string.search)
                     )
-                }
+                },
+                searchTextFieldHintText=R.string.name_or_specialty,
             )
         }
     }

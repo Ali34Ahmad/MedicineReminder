@@ -64,4 +64,6 @@
     <string name="choose_which_items_to_remove">Choose which items you\'d like to remove</string>
     <string name="edit_interactions">Edit Interactions</string>
     <string name="choose_which_one_to_edit">Choose which one you\'d like to edit</string>
+    <string name="add_phone_number">Add phone number</string>
+    <string name="keep_doctor_handy">Keep doctor\'s number handy</string>
 </resources>
