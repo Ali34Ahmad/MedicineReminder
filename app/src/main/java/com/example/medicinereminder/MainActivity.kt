@@ -27,13 +27,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             MedicineReminderTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Surface(modifier = Modifier.padding(innerPadding)){
+                    Surface(modifier = Modifier.padding(innerPadding)) {
 
                     }
+                }
             }
         }
     }
-}}
+}
 
 
 @Preview(showBackground = true)
@@ -41,8 +42,11 @@ class MainActivity : ComponentActivity() {
 fun Preview() {
     MaterialTheme {
         Surface {
-            Icon(imageVector = ImageVector.vectorResource(id = R.drawable.ic_medicine_outlined), contentDescription =null,
-                modifier = Modifier.size(24.dp),)
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_medicine_outlined),
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+            )
         }
     }
 }

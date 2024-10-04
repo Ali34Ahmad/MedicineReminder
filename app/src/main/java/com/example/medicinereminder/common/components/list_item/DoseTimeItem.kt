@@ -24,11 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicinereminder.common.ext.extension.toOrdered
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.additionalShapes
+import com.example.medicinereminder.presentation.ui.theme.sizing
+import com.example.medicinereminder.presentation.ui.theme.spacing
 
 @Composable
 fun DoseTimeItem(
     modifier: Modifier = Modifier,
-    order: Int = 1,
+    order: Int,
     time: String,
     numberOfDoses: Int,
     form: String
@@ -39,9 +42,9 @@ fun DoseTimeItem(
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colorScheme.outlineVariant,
-                shape = RoundedCornerShape(20)
+                shape = RoundedCornerShape(MaterialTheme.additionalShapes.medium20)
             )
-    ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -53,35 +56,28 @@ fun DoseTimeItem(
             ) {
                 Text(
                     text = order.toOrdered(),
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        color = MaterialTheme.colorScheme.outlineVariant,
-                        fontWeight = FontWeight.W400
-                    )
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                 )
 
-                VerticalDivider(modifier = Modifier
-                    .height(16.dp)
-                    .padding(horizontal = 6.dp))
+                VerticalDivider(
+                    modifier = Modifier
+                        .height(MaterialTheme.sizing.small16)
+                        .padding(horizontal = MaterialTheme.spacing.small6),
+                )
 
                 Text(
                     text = time,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.W400
-                    )
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
 
             }
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small4))
             Text(
                 text = "$numberOfDoses $form",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontWeight = FontWeight.W400
-                )
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
 

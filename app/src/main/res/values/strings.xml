@@ -71,4 +71,6 @@
     <string name="edit_date_and_time">Edit date and time</string>
     <string name="stop_reminder">Stop reminder</string>
     <string name="delete_medicine">Delete Medicine</string>
+    <string name="add_phone_number">Add phone number</string>
+    <string name="keep_doctor_handy">Keep doctor\'s number handy</string>
 </resources>
