@@ -2,6 +2,7 @@ package com.example.medicinereminder.common.components.list_item
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,14 +36,22 @@ fun AppointmentItem(
     @DrawableRes icon: Int? = null,
     @DrawableRes defaultImage: Int = R.drawable.doctor_default_image,
     //reminderState: ReminderState,
+    onClick: () -> Unit,
 ) {
     val doctorImage = image ?: defaultImage
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .clickable {
+                onClick()
+            }
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp
+            )
+        ,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
+        horizontalArrangement = Arrangement.Start,
     ) {
         Image(
             painter = painterResource(id = doctorImage),
@@ -74,6 +83,7 @@ fun AppointmentItemPreview() {
             doctorName = "Ali Mansoura",
             speciality = "Ophthalmologist",
             time = "9:00 AM",
+            onClick = {}
         )
     }
 }
@@ -82,6 +92,7 @@ fun AppointmentItemPreview() {
 fun AppointmentItemWithIconPreview() {
     MedicineReminderTheme {
         AppointmentItem(
+            onClick = {},
             doctorName = "Ali Mansoura",
             speciality = "Ophthalmologist",
             time = "9:00 AM",

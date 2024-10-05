@@ -2,18 +2,25 @@ package com.example.medicinereminder.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import androidx.room.Upsert
 import com.example.medicinereminder.data.local.entity.MedicineReminder
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MedicineReminderDao {
-    @Upsert
-    suspend fun upsertMedicineReminder(medicineReminder: MedicineReminder)
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertMedicineReminder(medicineReminder: MedicineReminder)
+
+    @Update
+    suspend fun updateMedicineReminder(medicineReminder: MedicineReminder)
 
     @Delete
-    suspend fun deleteMedicineReminder(medicineReminder: MedicineReminder)
+    fun deleteMedicineReminder(medicineReminder: MedicineReminder)
 
     @Query("""
         SELECT *

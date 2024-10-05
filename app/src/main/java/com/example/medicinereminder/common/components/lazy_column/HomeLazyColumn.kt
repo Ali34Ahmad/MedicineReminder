@@ -7,30 +7,44 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.medicinereminder.R
+import com.example.medicinereminder.common.components.bottom_sheet.HomeBottomSheet
 import com.example.medicinereminder.common.components.list_item.AppointmentItem
-import com.example.medicinereminder.common.components.list_item.MedicineItem
+import com.example.medicinereminder.common.components.list_item.MedicineReminderItem
 import com.example.medicinereminder.common.components.tooltip.ToolTipCard
 import com.example.medicinereminder.common.utility.extension.toFormattedString
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.entity.MedicineReminder
+import com.example.medicinereminder.data.model.Reminder
 import com.example.medicinereminder.data.model.ReminderInfo
 import com.example.medicinereminder.presentation.ui.theme.spacing
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeLazyColumn(
     modifier: Modifier = Modifier,
     reminders: List<ReminderInfo>,
     isRefillCardShown: Boolean,
     onRefillButtonClick: () -> Unit,
+    onItemSelected: (ReminderInfo) -> Unit,
+    sheetState: SheetState
     ) {
-
-        LazyColumn(
+    val scope = rememberCoroutineScope()
+    LazyColumn(
             modifier = modifier
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.Top,
@@ -53,16 +67,22 @@ fun HomeLazyColumn(
             items(reminders, key = { it.reminder.id.toString() + it.type }) { reminder ->
                 when (reminder.reminder) {
                     is MedicineReminder -> {
-                        val form = reminder.pharmaceuticalForm?.name
-
                         reminder.medicine?.let { medicine ->
-                            val isRunningLow = medicine.currentAmount <= 4
-                            val isOutOfStock = medicine.currentAmount == 0
-                            MedicineItem(
+                            val suffix = if(reminder.reminder.doseAmount>1) "s" else ""
+                            MedicineReminderItem(
+                                state = reminder.reminder.reminderState,
                                 medicineName = medicine.name,
-                                desc = if(isOutOfStock) stringResource(id = R.string.out_of_stock) else "${reminder.reminder.doseAmount} $form",
-                                icon = if(isRunningLow) R.drawable.ic_error_outlined else null,
-                                isWarning = isRunningLow
+                                subtitle = "${reminder.reminder.doseAmount} ${reminder.pharmaceuticalForm?.name}$suffix",
+                                time = reminder.reminder.dateTime.toFormattedString(),
+                                conflictsNumber = reminder.conflicts.size ,
+                                image = medicine.imageFileName,
+                                onClick = {
+                                   scope.launch {
+                                       onItemSelected(reminder)
+                                       sheetState.show()
+                                   }
+                                },
+                                defaultImage = R.drawable.pharmacy,
                             )
                         }
                     }
@@ -73,12 +93,17 @@ fun HomeLazyColumn(
                                 doctorName = doctor.name,
                                 speciality = doctor.specialty,
                                 time = reminder.reminder.dateTime.toFormattedString(),
-                                icon = null
+                                icon = null,
+                                onClick = {
+                                    scope.launch {
+                                        onItemSelected(reminder)
+                                        sheetState.show()
+                                    }
+                                }
                             )
                         }
                     }
                 }
             }
         }
-
 }

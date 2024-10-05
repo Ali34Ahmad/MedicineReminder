@@ -64,7 +64,7 @@
     <string name="choose_which_items_to_remove">Choose which items you\'d like to remove</string>
     <string name="edit_interactions">Edit Interactions</string>
     <string name="choose_which_one_to_edit">Choose which one you\'d like to edit</string>
-    <string name="conflicts">Conflicts</string>
+    <string name="conflicts">%d Conflicts</string>
     <string name="out_of_stock">Out of stock\n</string>
     <string name="mark_as_taken">Mark as taken</string>
     <string name="mark_as_missed">Mark as missed</string>
@@ -73,4 +73,9 @@
     <string name="delete_medicine">Delete Medicine</string>
     <string name="add_phone_number">Add phone number</string>
     <string name="keep_doctor_handy">Keep doctor\'s number handy</string>
+    <string name="pill">Pill</string>
+    <string name="delete_appintment">Delete appointment</string>
+    <string name="view_medicine">View medicine</string>
+    <string name="view_appointment">View appointment</string>
+    <string name="delete_reminder">Delete reminder</string>
 </resources>
