@@ -28,7 +28,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
-import com.example.medicinereminder.common.ext.toShortName
+import com.example.medicinereminder.common.utility.extension.toShortName
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.constants.ChipState
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme

@@ -405,3 +405,8 @@ val doctorsAppointments = listOf(
     ),
 )
 val remindersInfo = ReminderInfo.mergerReminders(doctorsAppointments, medicinesInfo)
+
+val appointments = listOf(
+    appointment1,
+    appointment2
+)

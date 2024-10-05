@@ -22,7 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.medicinereminder.R
-import com.example.medicinereminder.common.ext.toLocalDate
+import com.example.medicinereminder.common.utility.extension.toLocalDate
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing

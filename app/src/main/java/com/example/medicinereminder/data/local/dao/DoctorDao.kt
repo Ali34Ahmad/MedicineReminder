@@ -38,4 +38,12 @@ interface DoctorDao {
         )
     """)
     fun getDailyAppointments(): Flow<List<DoctorWithAppointments>>
+
+    @Transaction
+    @Query("""
+        SELECT * 
+        FROM doctor
+    """)
+    fun getDoctorsWithAppointments(): Flow<List<DoctorWithAppointments>>
+
 }

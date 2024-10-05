@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface MedicineRepository {
-    val dailyMedicineReminders: Flow<List<MedicineReminderInfo>>
+    val todayMedicineReminders: Flow<List<MedicineReminderInfo>>
 }

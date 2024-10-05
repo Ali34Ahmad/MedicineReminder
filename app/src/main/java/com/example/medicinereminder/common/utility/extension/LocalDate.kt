@@ -1,4 +1,4 @@
-package com.example.medicinereminder.common.ext.extension
+package com.example.medicinereminder.common.utility.extension
 
 import android.os.Build
 import androidx.annotation.RequiresApi

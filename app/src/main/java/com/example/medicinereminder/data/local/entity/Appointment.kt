@@ -32,7 +32,7 @@ data class Appointment(
     @PrimaryKey(autoGenerate = true) override val id: Int = 0,
     @ColumnInfo(name = RoomConstants.Appointment.DOCTOR_ID) val doctorId: Int,
     @ColumnInfo(name = RoomConstants.Appointment.DATE_TIME) override val dateTime: Long,
-    val reminderState: ReminderState,
+    override val reminderState: ReminderState,
     @ColumnInfo(name = RoomConstants.Appointment.DATE_ADDED) val dateAdded: Long,
     @ColumnInfo(name = RoomConstants.Appointment.LAST_MODIFIED_DATE) val lastModifiedDate: Long,
     ): Reminder

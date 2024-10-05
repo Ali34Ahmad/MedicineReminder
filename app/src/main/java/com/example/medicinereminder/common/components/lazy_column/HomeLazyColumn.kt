@@ -31,6 +31,7 @@ import com.example.medicinereminder.data.local.entity.MedicineReminder
 import com.example.medicinereminder.data.model.Reminder
 import com.example.medicinereminder.data.model.ReminderInfo
 import com.example.medicinereminder.presentation.ui.theme.spacing
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,9 +42,9 @@ fun HomeLazyColumn(
     isRefillCardShown: Boolean,
     onRefillButtonClick: () -> Unit,
     onItemSelected: (ReminderInfo) -> Unit,
-    sheetState: SheetState
+    sheetState: SheetState,
+    scope: CoroutineScope
     ) {
-    val scope = rememberCoroutineScope()
     LazyColumn(
             modifier = modifier
                 .fillMaxWidth(),

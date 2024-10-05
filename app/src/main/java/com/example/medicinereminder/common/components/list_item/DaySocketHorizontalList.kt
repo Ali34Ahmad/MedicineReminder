@@ -7,7 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.medicinereminder.common.ext.extension.listFromRange
+import com.example.medicinereminder.common.utility.extension.listFromRange
 import com.example.medicinereminder.presentation.ui.theme.spacing
 import java.time.LocalDate
 

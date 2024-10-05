@@ -1,11 +1,5 @@
-package com.example.medicinereminder.common.ext
+package com.example.medicinereminder.common.utility.extension
 
-import androidx.annotation.StringRes
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.DatePickerState
-import androidx.compose.material3.rememberDatePickerState
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.util.Calendar

@@ -35,5 +35,5 @@ data class MedicineReminder(
     @ColumnInfo(name = RoomConstants.MedicineReminder.DOSE_AMOUNT) val doseAmount: Int,
     @ColumnInfo(name = RoomConstants.MedicineReminder.DATE_ADDED) val dateAdded: Long,
     @ColumnInfo(name = RoomConstants.MedicineReminder.IS_REFILL_REMINDER) val isRefillReminder: Boolean,
-    val reminderState: ReminderState,
+    override val reminderState: ReminderState,
 ): Reminder

@@ -1,4 +1,4 @@
-package com.example.medicinereminder.feature.homeScreen.presentation
+package com.example.medicinereminder.feature.home_screen.presentation
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
@@ -12,9 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -93,8 +91,7 @@ fun HomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {onAddButtonClick()
-                          scope.launch { sheetState.show() }},
+                onClick = onAddButtonClick,
                 shape = CircleShape,
 
             ) {
@@ -105,9 +102,11 @@ fun HomeScreen(
             }
         },
     ) { innerPadding ->
-        Column {
+        Column(
+            modifier = Modifier.padding(innerPadding),
+        ) {
             ScrollableTab(
-                modifier = Modifier.padding(innerPadding),
+
                 itemsStringRes = tabStates.map { it.title },
                 showBadges = true,
                 selectedItemIndex = uiState.currentTab.ordinal,
@@ -126,7 +125,8 @@ fun HomeScreen(
                             isRefillCardShown = refills.isNotEmpty(),
                             onRefillButtonClick =onRefillButtonClick,
                             onItemSelected = onReminderClick,
-                            sheetState = sheetState
+                            sheetState = sheetState,
+                            scope = scope
                         )
                     }
                     HomeTab.MEDICINES -> {
@@ -135,7 +135,8 @@ fun HomeScreen(
                             isRefillCardShown = refills.isNotEmpty(),
                             onRefillButtonClick = onRefillButtonClick,
                             onItemSelected = onReminderClick,
-                            sheetState = sheetState
+                            sheetState = sheetState,
+                            scope = scope
                         )
                     }
                     HomeTab.APPOINTMENTS -> {
@@ -144,7 +145,8 @@ fun HomeScreen(
                             isRefillCardShown = false,
                             onRefillButtonClick = onRefillButtonClick,
                             onItemSelected = onReminderClick,
-                            sheetState = sheetState
+                            sheetState = sheetState,
+                            scope = scope
                         )
                     }
                     HomeTab.REFILL -> {
@@ -153,7 +155,8 @@ fun HomeScreen(
                             isRefillCardShown = false,
                             onRefillButtonClick = onRefillButtonClick,
                             onItemSelected = onReminderClick,
-                            sheetState = sheetState
+                            sheetState = sheetState,
+                            scope = scope
                         )
                     }
                 }

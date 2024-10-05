@@ -9,6 +9,8 @@ import javax.inject.Inject
 class DoctorRepositoryImpl @Inject constructor(
     private val doctorTable: DoctorDao
 ): DoctorRepository{
-    override val dailyRepository: Flow<List<DoctorWithAppointments>>
+    override val todayAppointments: Flow<List<DoctorWithAppointments>>
         get() = doctorTable.getDailyAppointments()
+    override val appointments: Flow<List<DoctorWithAppointments>>
+        get() = doctorTable.getDoctorsWithAppointments()
 }

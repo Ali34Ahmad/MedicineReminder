@@ -4,5 +4,6 @@ import com.example.medicinereminder.data.local.relationship.DoctorWithAppointmen
 import kotlinx.coroutines.flow.Flow
 
 interface DoctorRepository {
-    val dailyRepository: Flow<List<DoctorWithAppointments>>
+    val todayAppointments: Flow<List<DoctorWithAppointments>>
+    val appointments: Flow<List<DoctorWithAppointments>>
 }

@@ -1,4 +1,4 @@
-package com.example.medicinereminder.feature.homeScreen.presentation
+package com.example.medicinereminder.feature.home_screen.presentation
 
 import androidx.annotation.StringRes
 import com.example.medicinereminder.R

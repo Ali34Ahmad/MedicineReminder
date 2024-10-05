@@ -17,12 +17,9 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.medicinereminder.common.ext.extension.toOrdered
+import com.example.medicinereminder.common.utility.extension.toOrdered
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.additionalShapes
 import com.example.medicinereminder.presentation.ui.theme.sizing

@@ -1,4 +1,4 @@
-package com.example.medicinereminder.common.ext.extension
+package com.example.medicinereminder.common.utility.extension
 
 fun Int.toOrdered(): String{
     val suffix = this.getOrderedSuffix()

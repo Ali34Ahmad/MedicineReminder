@@ -1,9 +1,8 @@
-package com.example.medicinereminder.feature.homeScreen.presentation
+package com.example.medicinereminder.feature.home_screen.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medicinereminder.data.enums.ReminderState
-import com.example.medicinereminder.data.enums.ReminderType
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.entity.MedicineReminder
 import com.example.medicinereminder.data.model.ReminderInfo
@@ -32,8 +31,8 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val reminders: StateFlow<List<ReminderInfo>> = combine(
-        medicineRepository.dailyMedicineReminders,
-        doctorRepository.dailyRepository
+        medicineRepository.todayMedicineReminders,
+        doctorRepository.todayAppointments
     ){ medicines,doctors ->
         ReminderInfo.mergerReminders(doctors,medicines)
     }.stateIn(
