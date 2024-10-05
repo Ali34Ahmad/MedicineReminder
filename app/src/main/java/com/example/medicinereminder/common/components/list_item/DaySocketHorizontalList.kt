@@ -1,5 +1,7 @@
 package com.example.medicinereminder.common.components.list_item
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -11,6 +13,7 @@ import com.example.medicinereminder.common.utility.extension.listFromRange
 import com.example.medicinereminder.presentation.ui.theme.spacing
 import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DaySocketHorizontalList(
     startDate: LocalDate,
