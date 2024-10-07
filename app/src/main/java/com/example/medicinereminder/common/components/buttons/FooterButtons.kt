@@ -29,7 +29,10 @@ fun FooterButtons(
     onRightButtonClick: () -> Unit,
     @StringRes leftButtonText: Int,
     @StringRes rightButtonText: Int,
+    hasErrorColor: Boolean
 ) {
+    val color = if(hasErrorColor) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -43,15 +46,17 @@ fun FooterButtons(
             onClick = onLeftButtonClick,
             border = BorderStroke(
                 width = MaterialTheme.spacing.small1,
-                color = MaterialTheme.colorScheme.error
+                color = color
             ),
             colors = ButtonDefaults.outlinedButtonColors(
-                contentColor = MaterialTheme.colorScheme.error
-            )
+                contentColor = color
+            ),
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(id = leftButtonText),
-                style = MaterialTheme.typography.labelLarge
+                style = MaterialTheme.typography.labelLarge,
+
             )
         }
         Spacer(
@@ -61,10 +66,12 @@ fun FooterButtons(
         )
         Button(
             onClick = onRightButtonClick,
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(id = rightButtonText),
-                style = MaterialTheme.typography.labelLarge
+                style = MaterialTheme.typography.labelLarge,
+
             )
         }
     }
@@ -78,7 +85,8 @@ fun FooterButtonsPreview() {
             onLeftButtonClick = {},
             onRightButtonClick = { },
             leftButtonText = R.string.delete_medicine,
-            rightButtonText = R.string.view_medicine
+            rightButtonText = R.string.view_medicine,
+            hasErrorColor = true
         )
     }
 }

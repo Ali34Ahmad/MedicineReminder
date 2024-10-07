@@ -78,4 +78,15 @@
     <string name="view_medicine">View medicine</string>
     <string name="view_appointment">View appointment</string>
     <string name="delete_reminder">Delete reminder</string>
+    <string name="add_doctor">Add doctor</string>
+    <string name="doctor_name">Doctor name</string>
+    <string name="specialty">Specialty</string>
+    <string name="optional">(optional)</string>
+    <string name="contact_info">Contact info</string>
+    <string name="phone_number">Phone number</string>
+    <string name="address">Address</string>
+    <string name="state_government">State/Government</string>
+    <string name="city">City</string>
+    <string name="street">Street</string>
+    <string name="addition_notes">Addition notes</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.medicinereminder.common.components.top_app_bar
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +26,7 @@ fun TopAppBarWithTitle(
     onNavigateUpClick: () -> Unit,
     onTrailingIconClick: () -> Unit,
     modifier: Modifier = Modifier,
+    @DrawableRes trailingIcon: Int? = null
 ) {
     TopAppBarWrapper(
         hasLeadingIcon = showNavigateUp,
@@ -47,10 +49,10 @@ fun TopAppBarWithTitle(
                 .weight(1f)
                 .padding(horizontal = MaterialTheme.spacing.small8),
             )
-        if (showTrailingIcon) {
+        if (showTrailingIcon && trailingIcon != null) {
             IconButton(onClick = onTrailingIconClick) {
                 Icon(
-                    imageVector = ImageVector.vectorResource(Icons.Outlined.More),
+                    imageVector = ImageVector.vectorResource(trailingIcon),
                     contentDescription = stringResource(id = R.string.more_options),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -69,7 +71,8 @@ fun TopAppBarWithNavigateUpButtonWithoutTitlePreview() {
                 onNavigateUpClick = {},
                 title = "",
                 onTrailingIconClick = {},
-                showNavigateUp = true
+                showNavigateUp = true,
+                trailingIcon = Icons.Outlined.More
             )
         }
     }
@@ -85,7 +88,8 @@ fun TopAppBarWithNavigateUpButtonWithoutTrailingIconPreview() {
                 onNavigateUpClick = {},
                 title = "Add Medicine",
                 onTrailingIconClick = {},
-                showNavigateUp = true
+                showNavigateUp = true,
+                trailingIcon = Icons.Outlined.More
             )
         }
     }
@@ -101,7 +105,8 @@ fun TopAppBarWithNavigateUpButtonWithTitleAndTrailingIconPreview() {
                 onNavigateUpClick = {},
                 title = stringResource(id = R.string.add_medicine),
                 onTrailingIconClick = {},
-                showNavigateUp = true
+                showNavigateUp = true,
+                trailingIcon = Icons.Outlined.More
             )
         }
     }
@@ -118,6 +123,7 @@ fun TopAppBarWithTitleOnlyPreview() {
                 title = stringResource(id = R.string.app_name),
                 onTrailingIconClick = {},
                 showNavigateUp = false,
+                trailingIcon = Icons.Outlined.More
             )
         }
     }

@@ -1,8 +1,7 @@
-package com.example.medicinereminder.feature.appointment_screen
+package com.example.medicinereminder.feature.appointment_screen.presentation
 
 import androidx.annotation.StringRes
 import com.example.medicinereminder.R
-import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.model.ReminderInfo
 
 data class AppointmentsUiState(

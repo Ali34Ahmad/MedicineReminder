@@ -38,7 +38,7 @@ fun OutlinedTextFieldComponent(
         onValueChange = onValueChange,
         modifier = modifier.fillMaxWidth(),
         isError = isError,
-
+        maxLines = 1,
         label = {
             Text(text = if (isRequired)
                 stringResource(label).plus(" *")

@@ -95,7 +95,8 @@ fun CustomBottomSheetWithFooter(
                 onViewButtonClick(reminder)
             },
             leftButtonText = deleteButtonText,
-            rightButtonText = viewButtonText
+            rightButtonText = viewButtonText,
+            hasErrorColor = true
         )
     }
 

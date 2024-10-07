@@ -1,9 +1,7 @@
 package com.example.medicinereminder.common.components.composables
 
 import androidx.compose.animation.animateColor
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
@@ -24,14 +22,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
@@ -41,8 +36,8 @@ import com.example.medicinereminder.presentation.ui.theme.spacing
 @Composable
 fun PageIndicator(
     modifier: Modifier = Modifier,
-    numberOfPages: Int = 3,
-    currentPage: Int = 1,
+    numberOfPages: Int,
+    currentPage: Int,
 ) {
     Row(
         modifier = modifier
@@ -104,6 +99,7 @@ fun PageIndicatorPreview() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 PageIndicator(
+                    numberOfPages = 3,
                     currentPage = currentPage,
                 )
                 Spacer(modifier = Modifier.height(16.dp))

@@ -1,4 +1,4 @@
-package com.example.medicinereminder.feature.appointment_screen
+package com.example.medicinereminder.feature.appointment_screen.presentation
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
@@ -33,6 +33,7 @@ import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.remindersInfo
 import com.example.medicinereminder.data.model.ReminderInfo
+import com.example.medicinereminder.presentation.ui.constants.Icons
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing
 import kotlinx.coroutines.CoroutineScope
@@ -43,18 +44,12 @@ fun AppointmentsScreen(
     modifier: Modifier = Modifier,
     uiState: AppointmentsUiState,
     reminders: List<ReminderInfo>,
+    onAction: (AppointmentsAction) -> Unit,
     @StringRes title:Int,
     tabs: List<AppointmentsTab>,
-    onTabClick: (AppointmentsTab) -> Unit,
-    onAppointmentClick: (ReminderInfo) ->Unit,
-    onDeleteButtonClick: (ReminderInfo) -> Unit,
     onViewButtonClick: (ReminderInfo) -> Unit,
     onEditButtonClick: (ReminderInfo) -> Unit,
-    onStopButtonClick: (ReminderInfo) -> Unit,
-    onMarkAsTakenButtonClick: (ReminderInfo) -> Unit,
-    onMarkAsMissedButtonClick: (ReminderInfo) -> Unit,
     onAddButtonClick: () -> Unit,
-    onDismissRequest:() -> Unit,
     scope : CoroutineScope
 ) {
     val sheetState = rememberModalBottomSheetState(true)
@@ -82,7 +77,9 @@ fun AppointmentsScreen(
                 showNavigateUp = false,
                 title = stringResource(id = title),
                 onNavigateUpClick = {  },
-                onTrailingIconClick = {  })
+                onTrailingIconClick = {  },
+                trailingIcon = Icons.Outlined.Search
+                )
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -103,7 +100,9 @@ fun AppointmentsScreen(
                 itemsStringRes = tabs.map { it.title },
                 showBadges = true,
                 selectedItemIndex = uiState.currentTab.ordinal,
-                onTabClick = { index -> onTabClick(tabs[index]) },
+                onTabClick = { index ->
+                                onAction(AppointmentsAction.UpdateCurrentTab(tabs[index]))
+                             },
                 badges = badges
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium16))
@@ -115,7 +114,10 @@ fun AppointmentsScreen(
                         reminders = upcomingAppointments,
                         isRefillCardShown = false,
                         onRefillButtonClick = {  },
-                        onItemSelected = onAppointmentClick,
+                        onItemSelected = {
+                            onAction(AppointmentsAction.OpenBottomSheet)
+                            onAction(AppointmentsAction.UpdateSelectedReminder(it))
+                        },
                         sheetState = sheetState,
                         scope = scope
                     )
@@ -124,7 +126,10 @@ fun AppointmentsScreen(
                             reminders = completedAppointment,
                             isRefillCardShown = false,
                             onRefillButtonClick = {  },
-                            onItemSelected = onAppointmentClick,
+                            onItemSelected = {
+                                onAction(AppointmentsAction.OpenBottomSheet)
+                                onAction(AppointmentsAction.UpdateSelectedReminder(it))
+                            },
                             sheetState = sheetState,
                             scope = scope
                         )
@@ -134,7 +139,10 @@ fun AppointmentsScreen(
                             reminders = missedAppointments,
                             isRefillCardShown = false,
                             onRefillButtonClick = {  },
-                            onItemSelected = onAppointmentClick,
+                            onItemSelected = {
+                                onAction(AppointmentsAction.OpenBottomSheet)
+                                onAction(AppointmentsAction.UpdateSelectedReminder(it))
+                            },
                             sheetState = sheetState,
                             scope = scope
                         )
@@ -146,13 +154,47 @@ fun AppointmentsScreen(
                     HomeBottomSheet(
                         reminder = uiState.selectedReminder,
                         sheetState = sheetState,
-                        onMarkAsTakenButtonClick = onMarkAsTakenButtonClick,
-                        onMarkAsMissedButtonClick = onMarkAsMissedButtonClick,
+                        onMarkAsTakenButtonClick = {
+                            if (it.reminder is Appointment){
+                                onAction(
+                                    AppointmentsAction.UpdateAppointmentState(
+                                        it.reminder,
+                                        ReminderState.TAKEN
+                                    )
+                                )
+                            }
+                        },
+                        onMarkAsMissedButtonClick = {
+                            if (it.reminder is Appointment){
+                                onAction(
+                                    AppointmentsAction.UpdateAppointmentState(
+                                        it.reminder,
+                                        ReminderState.MISSED
+                                    )
+                                )
+                            }
+                        },
                         onEditButtonClick = onEditButtonClick,
-                        onStopReminderButtonClick = onStopButtonClick,
-                        onDeleteButtonClick = onDeleteButtonClick,
+                        onStopReminderButtonClick = {
+                            if (it.reminder is Appointment){
+                                onAction(
+                                    AppointmentsAction.UpdateAppointmentState(
+                                        it.reminder,
+                                        ReminderState.STOPPED
+                                    )
+                                )
+                            }
+                        },
+                        onDeleteButtonClick = {
+                            if(it.reminder is Appointment){
+                                onAction(AppointmentsAction.DeleteAppointment(it.reminder))
+                                onAction(AppointmentsAction.CloseBottomSheet)
+                            }
+                        },
                         onViewButtonClick = onViewButtonClick,
-                        onDismissRequest = onDismissRequest
+                        onDismissRequest = {
+                            onAction(AppointmentsAction.CloseBottomSheet)
+                        }
                     )
                 }
             }
@@ -172,24 +214,12 @@ fun AppointmentsScreenPreview() {
             title = R.string.app_name,
             uiState =  uiState,
             reminders = remindersInfo.filter { it.reminder is Appointment },
-            onAppointmentClick = {
-                uiState = uiState.copy(selectedReminder = it, isBottomSheetShown = true)
-            },
-            onMarkAsTakenButtonClick = {},
-            onDeleteButtonClick = {},
             onEditButtonClick = {},
-            onTabClick = {
-                uiState = uiState.copy(currentTab = it)
-            },
-            onMarkAsMissedButtonClick = {},
-            onStopButtonClick = {},
             tabs = AppointmentsTab.entries,
             onAddButtonClick = {},
             scope = rememberCoroutineScope(),
-            onDismissRequest = {
-                uiState = uiState.copy(isBottomSheetShown = false)
-            },
-            onViewButtonClick = {}
+            onViewButtonClick = {},
+            onAction = {}
         )
     }
 }

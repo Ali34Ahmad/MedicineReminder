@@ -29,13 +29,13 @@ import com.example.medicinereminder.common.components.bottom_sheet.HomeBottomShe
 import com.example.medicinereminder.common.components.lazy_column.HomeLazyColumn
 import com.example.medicinereminder.common.components.tab.ScrollableTab
 import com.example.medicinereminder.common.components.top_app_bar.TopAppBarWithTitle
+import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.enums.ReminderType
 import com.example.medicinereminder.data.local.entity.MedicineReminder
 import com.example.medicinereminder.data.local.remindersInfo
 import com.example.medicinereminder.data.model.ReminderInfo
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,17 +45,7 @@ fun HomeScreen(
     uiState: HomeUIState,
     reminders: List<ReminderInfo>,
     tabStates: List<HomeTab>,
-    onTabClick: (tab: HomeTab) -> Unit,
-    onAddButtonClick: () -> Unit,
-    onRefillButtonClick: () -> Unit,
-    onReminderClick: (ReminderInfo) -> Unit,
-    onMarkAsTakenButtonClick: (ReminderInfo) -> Unit,
-    onMarkAsMissedButtonClick: (ReminderInfo) -> Unit,
-    onEditButtonClick: (ReminderInfo) -> Unit,//I don't know what we will do here
-    onStopReminderButtonClick: (ReminderInfo) -> Unit,
-    onDeleteButtonClick: (ReminderInfo) -> Unit,
-    onViewButtonClick: (ReminderInfo) -> Unit,
-    onDismissRequest: () -> Unit
+    onAction: (HomeAction) -> Unit
 ) {
     val sheetState = rememberModalBottomSheetState(true)
     val scope = rememberCoroutineScope()
@@ -91,7 +81,9 @@ fun HomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddButtonClick,
+                onClick = {
+                    onAction(HomeAction.AddNewReminder)
+                },
                 shape = CircleShape,
 
             ) {
@@ -110,7 +102,9 @@ fun HomeScreen(
                 itemsStringRes = tabStates.map { it.title },
                 showBadges = true,
                 selectedItemIndex = uiState.currentTab.ordinal,
-                onTabClick = { index -> onTabClick(tabStates[index]) },
+                onTabClick = { index ->
+                    onAction(HomeAction.UpdateTeb(tabStates[index]))
+                             },
                 badges = badges
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium16))
@@ -123,8 +117,12 @@ fun HomeScreen(
                         HomeLazyColumn(
                             reminders = reminders,
                             isRefillCardShown = refills.isNotEmpty(),
-                            onRefillButtonClick =onRefillButtonClick,
-                            onItemSelected = onReminderClick,
+                            onRefillButtonClick ={
+                                onAction(HomeAction.UpdateTeb(HomeTab.REFILL))
+                            },
+                            onItemSelected = {
+                                onAction(HomeAction.UpdateReminder(it))
+                            },
                             sheetState = sheetState,
                             scope = scope
                         )
@@ -133,8 +131,12 @@ fun HomeScreen(
                         HomeLazyColumn(
                             reminders = medicineReminders,
                             isRefillCardShown = refills.isNotEmpty(),
-                            onRefillButtonClick = onRefillButtonClick,
-                            onItemSelected = onReminderClick,
+                            onRefillButtonClick = {
+                                onAction(HomeAction.UpdateTeb(HomeTab.REFILL))
+                            },
+                            onItemSelected = {
+                                onAction(HomeAction.UpdateReminder(it))
+                            },
                             sheetState = sheetState,
                             scope = scope
                         )
@@ -143,8 +145,12 @@ fun HomeScreen(
                         HomeLazyColumn(
                             reminders = appointments,
                             isRefillCardShown = false,
-                            onRefillButtonClick = onRefillButtonClick,
-                            onItemSelected = onReminderClick,
+                            onRefillButtonClick = {
+                                onAction(HomeAction.UpdateTeb(HomeTab.REFILL))
+                            },
+                            onItemSelected = {
+                                onAction(HomeAction.UpdateReminder(it))
+                            },
                             sheetState = sheetState,
                             scope = scope
                         )
@@ -153,8 +159,10 @@ fun HomeScreen(
                         HomeLazyColumn(
                             reminders = refills,
                             isRefillCardShown = false,
-                            onRefillButtonClick = onRefillButtonClick,
-                            onItemSelected = onReminderClick,
+                            onRefillButtonClick = {  },
+                            onItemSelected = {
+                                onAction(HomeAction.UpdateReminder(it))
+                            },
                             sheetState = sheetState,
                             scope = scope
                         )
@@ -166,13 +174,27 @@ fun HomeScreen(
                     HomeBottomSheet(
                         reminder = uiState.selectedReminder,
                         sheetState = sheetState,
-                        onMarkAsTakenButtonClick = onMarkAsTakenButtonClick,
-                        onMarkAsMissedButtonClick = onMarkAsMissedButtonClick,
-                        onEditButtonClick = onEditButtonClick,
-                        onStopReminderButtonClick = onStopReminderButtonClick,
-                        onDeleteButtonClick = onDeleteButtonClick,
-                        onViewButtonClick = onViewButtonClick,
-                        onDismissRequest = onDismissRequest
+                        onMarkAsTakenButtonClick = {
+                            onAction(HomeAction.UpdateReminderState(it,ReminderState.TAKEN))
+                        },
+                        onMarkAsMissedButtonClick = {
+                            onAction(HomeAction.UpdateReminderState(it,ReminderState.MISSED))
+                        },
+                        onEditButtonClick = {
+                            onAction(HomeAction.EditReminder(it))
+                        },
+                        onStopReminderButtonClick = {
+                            onAction(HomeAction.UpdateReminderState(it,ReminderState.STOPPED))
+                        },
+                        onDeleteButtonClick = {
+                            onAction(HomeAction.DeleteReminder(it))
+                        },
+                        onViewButtonClick = {
+                            onAction(HomeAction.ViewDetails(it))
+                        },
+                        onDismissRequest = {
+                            onAction(HomeAction.CloseBottomSheet)
+                        }
                     )
                 }
             }
@@ -195,30 +217,7 @@ fun HomeScreenPreview() {
             reminders = remindersInfo,
             tabStates = HomeTab.entries,
             uiState =uiState,
-            onTabClick = { tab->
-                uiState = uiState.copy(currentTab = tab)
-                         },
-            onRefillButtonClick = {
-                uiState = uiState.copy(currentTab = HomeTab.REFILL)
-            },
-            onAddButtonClick = {
-
-            },
-            onReminderClick = { reminder ->
-                uiState = uiState.copy(
-                    selectedReminder = reminder,
-                    isBottomSheetShown = !uiState.isBottomSheetShown
-                )
-            },
-            onDeleteButtonClick = {},
-            onEditButtonClick = {},
-            onViewButtonClick = {},
-            onStopReminderButtonClick = {},
-            onMarkAsTakenButtonClick = {},
-            onMarkAsMissedButtonClick = {},
-            onDismissRequest = {
-                uiState = uiState.copy(isBottomSheetShown = false)
-            }
+            onAction = {}
             )
 
     }

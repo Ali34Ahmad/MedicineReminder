@@ -16,6 +16,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.medicinereminder.feature.add_medicine.add_doctor.AddDoctorScreen
+import com.example.medicinereminder.feature.add_medicine.add_doctor.AddDoctorViewModel
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,9 +29,17 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             MedicineReminderTheme {
+                val viewModel = hiltViewModel<AddDoctorViewModel>()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Surface(modifier = Modifier.padding(innerPadding)) {
-
+                            val uiState = viewModel.uiState.value
+                            AddDoctorScreen(
+                                currentPageNumber = 2,
+                                numberOfPages = 3,
+                                title = R.string.add_doctor,
+                                uiState = uiState,
+                                onAction = viewModel::onAction
+                            )
                     }
                 }
             }
