@@ -8,7 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
 import com.example.medicinereminder.data.local.entity.Appointment
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 import kotlinx.coroutines.flow.Flow
 
 @Dao

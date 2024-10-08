@@ -2,7 +2,9 @@ package com.example.medicinereminder.common.components.text_field
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -11,7 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -20,6 +24,7 @@ import com.example.medicinereminder.R
 import com.example.medicinereminder.presentation.ui.constants.Icons
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.spacing
 
 @Composable
 fun OutlinedTextFieldComponent(
@@ -27,42 +32,58 @@ fun OutlinedTextFieldComponent(
     value: String,
     onValueChange: (String) -> Unit,
     @StringRes label: Int,
-    isError: Boolean = false,
+    @StringRes errorMessage: Int? =null,
     isRequired: Boolean = false,
-    buttonText: String? = null,
+    @StringRes buttonText: Int? = null,
     @DrawableRes buttonIcon: Int? = null,
-    onClick: () -> Unit = {},
+    onTextButtonClick: () -> Unit = {},
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        modifier = modifier.fillMaxWidth(),
-        isError = isError,
+        modifier = modifier,
+        isError = errorMessage!=null,
+        supportingText = {
+            if (errorMessage!=null) {
+                Text(
+                    text = stringResource(errorMessage),
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        },
         maxLines = 1,
         label = {
-            Text(text = if (isRequired)
-                stringResource(label).plus(" *")
-            else stringResource(label)
+            Text(
+                text = if (isRequired)
+                    stringResource(label).plus(" *")
+                else stringResource(label)
             )
         },
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions,
         trailingIcon = {
-                buttonText?.let{
-                    TextButton(onClick = { onClick() }) {
-                        Text(
-                            text = it,
-                            style = TextStyle(
-                                fontWeight = FontWeight.W400,
-                            )
+            buttonText?.let {
+                TextButton(
+                    onClick = { onTextButtonClick() },
+                    modifier = Modifier.padding(end = MaterialTheme.spacing.small8)
+                ) {
+                    Text(
+                        text = stringResource(it),
+                        style = TextStyle(
+                            fontWeight = FontWeight.W400,
                         )
-                    }
-                }
-                buttonIcon?.let {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = it),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
+            }
+            buttonIcon?.let {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = it),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
         },
     )
 }
@@ -71,7 +92,7 @@ fun OutlinedTextFieldComponent(
 @Composable
 fun MedicineReminderTextFieldPreview() {
     MedicineReminderTheme {
-        Surface{
+        Surface {
             OutlinedTextFieldComponent(
                 value = "Hello",
                 onValueChange = {},
@@ -86,13 +107,13 @@ fun MedicineReminderTextFieldPreview() {
 @Composable
 fun MedicineReminderTextFieldWithTextActionPreview() {
     MedicineReminderTheme {
-        Surface{
+        Surface {
             OutlinedTextFieldComponent(
                 value = "Hello",
                 onValueChange = {},
                 label = R.string.medicine_name,
                 isRequired = true,
-                buttonText = "save"
+                buttonText = R.string.save,
             )
         }
     }
@@ -102,7 +123,7 @@ fun MedicineReminderTextFieldWithTextActionPreview() {
 @Composable
 fun MedicineReminderTextFieldWithIconActionPreview() {
     MedicineReminderTheme {
-        Surface{
+        Surface {
             OutlinedTextFieldComponent(
                 value = "Hello",
                 onValueChange = {},
@@ -118,14 +139,14 @@ fun MedicineReminderTextFieldWithIconActionPreview() {
 @Composable
 fun MedicineReminderTextFieldErrorPreview() {
     MedicineReminderTheme {
-        Surface{
+        Surface {
             OutlinedTextFieldComponent(
                 value = "Hello",
                 onValueChange = {},
                 label = R.string.medicine_name,
                 isRequired = true,
-                isError = true,
-                buttonText = "save"
+                errorMessage = R.string.required_field,
+                buttonText = R.string.save,
             )
         }
     }

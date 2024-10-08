@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Relation
 import com.example.medicinereminder.data.local.entity.DayProgram
 import com.example.medicinereminder.data.local.entity.Medicine
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 data class MedicineWithDays(
     @Embedded val medicine: Medicine,

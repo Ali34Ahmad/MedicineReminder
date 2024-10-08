@@ -7,7 +7,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.model.Reminder
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 @Entity(
     tableName = RoomConstants.MedicineReminder.TABLE_NAME,

@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import com.example.medicinereminder.R
-import com.example.medicinereminder.data.local.pharmaceuticalForms
+import com.example.medicinereminder.data.local.medicineFormsFakes
 import com.example.medicinereminder.presentation.ui.constants.Icons
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
@@ -70,7 +70,7 @@ fun FlowRowItemUnselectedPreview() {
     MedicineReminderTheme {
         Surface {
             MedicineFormFlowRowItem(
-                text = pharmaceuticalForms[0].name,
+                text = medicineFormsFakes[0].name,
                 onClick = {},
                 selected = false,
                 onTrailingIconClick = {},
@@ -85,7 +85,7 @@ fun FlowRowItemSelectedPreview() {
     MedicineReminderTheme {
         Surface {
             MedicineFormFlowRowItem(
-                text = stringResource(id = R.string.add_form),
+                text = stringResource(id = R.string.add_new_form),
                 onClick = {},
                 selected = false,
                 trailingIcon = Icons.Outlined.Add,
@@ -101,7 +101,7 @@ fun FlowRowItemWithTrailingIconPreview() {
     MedicineReminderTheme {
         Surface {
             MedicineFormFlowRowItem(
-                text = pharmaceuticalForms[0].name,
+                text = medicineFormsFakes[0].name,
                 onClick = {},
                 selected = true,
                 trailingIcon = Icons.Outlined.Close,

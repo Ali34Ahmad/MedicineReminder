@@ -2,11 +2,9 @@ package com.example.medicinereminder.data.local.relationship
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.example.medicinereminder.data.local.entity.Conflict
 import com.example.medicinereminder.data.local.entity.Medicine
 import com.example.medicinereminder.data.local.entity.MedicineReminder
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 data class MedicineWithMedicineReminder(
     @Embedded

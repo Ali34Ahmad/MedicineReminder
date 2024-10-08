@@ -2,16 +2,16 @@ package com.example.medicinereminder.data.local.relationship
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.example.medicinereminder.data.local.entity.Conflict
+import com.example.medicinereminder.data.local.entity.Interaction
 import com.example.medicinereminder.data.local.entity.Medicine
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 data class MedicineWithConflicts(
     @Embedded val medicine: Medicine,
     @Relation(
-        entity= Conflict::class,
+        entity= Interaction::class,
         parentColumn = RoomConstants.Medicine.ID,
-        entityColumn = RoomConstants.Conflict.MEDICINE_ID
+        entityColumn = RoomConstants.Interaction.MEDICINE_ID
     )
-    val conflicts: List<Conflict>
+    val interactions: List<Interaction>
 )

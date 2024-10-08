@@ -12,7 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.list_item.RadioButtonItem
-import com.example.medicinereminder.data.local.conflict
+import com.example.medicinereminder.data.local.interaction
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.model.SelectableItem
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
@@ -47,7 +47,7 @@ fun DialogWithRadioButtonLazyColumn(
         items(selectableItems.size) { index ->
             RadioButtonItem(
                 selected = selectableItems[index].selected,
-                text = selectableItems[index].value.description,
+                text = selectableItems[index].value,
                 onClick = {
                     if (!selectableItems[index].selected) {
                         onCheckedChange(index, !selectableItems[index].selected)
@@ -70,12 +70,12 @@ fun DialogWithRadioButtonLazyColumn(
 fun DialogWithRadioButtonLazyColumnPreview() {
     val items = remember {
         mutableStateListOf(
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
         )
     }
     MedicineReminderTheme {

@@ -3,23 +3,23 @@ package com.example.medicinereminder.data.local.relationship
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
-import com.example.medicinereminder.data.local.entity.Conflict
+import com.example.medicinereminder.data.local.entity.Interaction
 import com.example.medicinereminder.data.local.entity.DayProgram
 import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.data.local.entity.Medicine
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
+import com.example.medicinereminder.data.local.entity.MedicineForm
 import com.example.medicinereminder.data.local.entity.Time
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 data class MedicineWithAllDetails(
     @Embedded
     val medicine: Medicine,
     @Relation(
-        entity = PharmaceuticalForm::class,
-        parentColumn = RoomConstants.Medicine.PHARMACEUTICAL_FORM_ID,
-        entityColumn = RoomConstants.PharmaceuticalForm.ID,
+        entity = MedicineForm::class,
+        parentColumn = RoomConstants.Medicine.MEDICINE_FORM_ID,
+        entityColumn = RoomConstants.MedicineForm.ID,
     )
-    val pharmaceuticalForm: PharmaceuticalForm,
+    val medicineForm: MedicineForm,
     @Relation(
         entity = Doctor::class,
         parentColumn = RoomConstants.Medicine.DOCTOR_ID,
@@ -27,11 +27,11 @@ data class MedicineWithAllDetails(
     )
     val doctor: Doctor,
     @Relation(
-        entity = Conflict::class,
+        entity = Interaction::class,
         parentColumn = RoomConstants.Medicine.ID,
-        entityColumn = RoomConstants.Conflict.MEDICINE_ID,
+        entityColumn = RoomConstants.Interaction.MEDICINE_ID,
     )
-    val conflicts:List<Conflict>,
+    val interactions:List<Interaction>,
     @Relation(
         entity = AlternativeMedicine::class,
         parentColumn = RoomConstants.Medicine.ID,

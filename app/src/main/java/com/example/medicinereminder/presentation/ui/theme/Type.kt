@@ -45,20 +45,20 @@ val typography = Typography(
     titleLarge = TextStyle(
         fontSize = 22.sp,
         lineHeight = 28.sp,
-        letterSpacing = -0.25.sp,
+        letterSpacing = (-0.25).sp,
         fontWeight = FontWeight.Bold
     ),
     titleMedium = TextStyle(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.SemiBold
     ),
     titleSmall = TextStyle(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.SemiBold
     ),
     bodyLarge = TextStyle(
         fontSize = 16.sp,

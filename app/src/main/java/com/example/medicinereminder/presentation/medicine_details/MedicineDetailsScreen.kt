@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.example.medicinereminder.R
-import com.example.medicinereminder.common.components.top_app_bar.TopAppBarWithTitle
+import com.example.medicinereminder.common.components.top_app_bar.StandardTopAppBarComponent
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 
@@ -26,9 +26,9 @@ fun MedicineDetailsScreen(
                     contentDescription = null,
                     modifier = Modifier.fillMaxWidth()
                 )
-                TopAppBarWithTitle(
+                StandardTopAppBarComponent(
                     showTrailingIcon = true,
-                    title = "",
+                    title = null,
                     onNavigateUpClick = {},
                     onTrailingIconClick = {},
                     showNavigateUp = true

@@ -6,7 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.medicinereminder.data.enums.ProgramType
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 @Entity(
     tableName = RoomConstants.CycleProgram.TABLE_NAME,

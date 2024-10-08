@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.check_box.CheckBoxComponent
-import com.example.medicinereminder.data.local.conflict
+import com.example.medicinereminder.data.local.interaction
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.model.SelectableItem
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
@@ -48,7 +48,7 @@ fun DialogWithCheckBoxesLazyColumn(
         items(selectableItems.size) { index ->
             CheckBoxComponent(
                 checked = selectableItems[index].selected,
-                text = selectableItems[index].value.description,
+                text = selectableItems[index].value,
                 onCheckedChange = {
                     onCheckedChange(index, it)
                 },
@@ -70,12 +70,12 @@ fun DialogWithCheckBoxesLazyColumn(
 fun DialogWithCheckBoxesPreview() {
     val items = remember {
         mutableStateListOf(
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
-            SelectableItem(conflict, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
+            SelectableItem(interaction.description, false),
         )
     }
     MedicineReminderTheme {
@@ -84,7 +84,7 @@ fun DialogWithCheckBoxesPreview() {
                 showDialog = true,
                 onDismissRequest = {},
                 onConfirmClick = {},
-                title = R.string.remove_interactions,
+                title = R.string.delete_interactions,
                 confirmButtonText = R.string.confirm,
                 dismissButtonText = R.string.cancel,
                 description = R.string.choose_which_items_to_remove,

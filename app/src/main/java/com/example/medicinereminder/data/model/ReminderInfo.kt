@@ -3,19 +3,18 @@ package com.example.medicinereminder.data.model
 import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.enums.ReminderType
 import com.example.medicinereminder.data.local.entity.Appointment
-import com.example.medicinereminder.data.local.entity.Conflict
+import com.example.medicinereminder.data.local.entity.Interaction
 import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.data.local.entity.Medicine
 import com.example.medicinereminder.data.local.entity.MedicineReminder
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
+import com.example.medicinereminder.data.local.entity.MedicineForm
 import com.example.medicinereminder.data.local.relationship.DoctorWithAppointments
 import com.example.medicinereminder.data.local.relationship.MedicineReminderInfo
-import com.example.medicinereminder.data.local.relationship.MedicineWithMedicineReminder
 
 data class ReminderInfo(
     val medicine: Medicine?,
-    val conflicts: List<Conflict>,
-    val pharmaceuticalForm: PharmaceuticalForm?,
+    val interactions: List<Interaction>,
+    val medicineForm: MedicineForm?,
     val doctor: Doctor?,
     val reminder: Reminder,
     val type: ReminderType
@@ -34,8 +33,8 @@ data class ReminderInfo(
                             reminder = it,
                             type = ReminderType.APPOINTMENT,
                             medicine = null,
-                            pharmaceuticalForm = null,
-                            conflicts = emptyList()
+                            medicineForm = null,
+                            interactions = emptyList()
                         )
                     )
                 }
@@ -47,8 +46,8 @@ data class ReminderInfo(
                             medicine = medicineInfo.medicine,
                             reminder = it,
                             type = ReminderType.MEDICINE,
-                            conflicts = medicineInfo.conflicts,
-                            pharmaceuticalForm = medicineInfo.pharmaceuticalForm,
+                            interactions = medicineInfo.interactions,
+                            medicineForm = medicineInfo.medicineForm,
                             doctor = null
                         )
                     )
@@ -111,8 +110,8 @@ fun main() {
         )
     )
     val y = MedicineReminderInfo(
-        conflicts = emptyList(),
-        pharmaceuticalForm = PharmaceuticalForm(0,"",false),
+        interactions = emptyList(),
+        medicineForm = MedicineForm(0,"",false),
         medicine = Medicine(
             id = 1 ,
             name = "D",
@@ -154,8 +153,8 @@ fun main() {
         )
     )
     val y2 = MedicineReminderInfo(
-        conflicts = emptyList(),
-        pharmaceuticalForm = PharmaceuticalForm(0,"",false),
+        interactions = emptyList(),
+        medicineForm = MedicineForm(0,"",false),
         medicine = Medicine(
             id = 2 ,
             name = "F",

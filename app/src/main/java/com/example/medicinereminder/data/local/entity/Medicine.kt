@@ -5,7 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
+import kotlin.String
 
 @Entity(
     tableName = RoomConstants.Medicine.TABLE_NAME,
@@ -18,9 +19,9 @@ import com.example.medicinereminder.utilities.RoomConstants
             onUpdate = ForeignKey.CASCADE
         ),
         ForeignKey(
-            entity = PharmaceuticalForm::class,
-            parentColumns = [RoomConstants.PharmaceuticalForm.ID],
-            childColumns = [RoomConstants.Medicine.PHARMACEUTICAL_FORM_ID],
+            entity = MedicineForm::class,
+            parentColumns = [RoomConstants.MedicineForm.ID],
+            childColumns = [RoomConstants.Medicine.MEDICINE_FORM_ID],
             onDelete = ForeignKey.SET_NULL,
             onUpdate = ForeignKey.CASCADE
         ),
@@ -33,7 +34,7 @@ import com.example.medicinereminder.utilities.RoomConstants
         ),
         Index(
             value = [
-                RoomConstants.Medicine.PHARMACEUTICAL_FORM_ID
+                RoomConstants.Medicine.MEDICINE_FORM_ID
             ]
         ),
 
@@ -44,7 +45,7 @@ data class Medicine(
     val name: String,
     @ColumnInfo(name = RoomConstants.Medicine.COMPANY_NAME) val companyName: String?=null,
     @ColumnInfo(name = RoomConstants.Medicine.DOCTOR_ID) val doctorId: Int?=null,
-    @ColumnInfo(name = RoomConstants.Medicine.PHARMACEUTICAL_FORM_ID) val pharmaceuticalFormId: Int,
+    @ColumnInfo(name = RoomConstants.Medicine.MEDICINE_FORM_ID) val pharmaceuticalFormId: Int,
     val note: String?=null,
     @ColumnInfo(name = RoomConstants.Medicine.CURRENT_AMOUNT) val currentAmount: Int,
     @ColumnInfo(name = RoomConstants.Medicine.DATE_ADDED) val dateAdded:Long,

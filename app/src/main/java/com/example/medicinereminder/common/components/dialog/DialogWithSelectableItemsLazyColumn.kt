@@ -82,7 +82,7 @@ fun DialogWithRadioGroupPreview() {
                 showDialog = true,
                 onDismissRequest = {},
                 onConfirmClick = {},
-                title = R.string.remove_interactions,
+                title = R.string.delete_interactions,
                 confirmButtonText = R.string.confirm,
                 dismissButtonText = R.string.cancel,
                 description = R.string.choose_which_items_to_remove,

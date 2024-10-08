@@ -22,13 +22,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.bottom_sheet.HomeBottomSheet
 import com.example.medicinereminder.common.components.lazy_column.HomeLazyColumn
 import com.example.medicinereminder.common.components.tab.ScrollableTab
-import com.example.medicinereminder.common.components.top_app_bar.TopAppBarWithTitle
+import com.example.medicinereminder.common.components.top_app_bar.StandardTopAppBarComponent
 import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.remindersInfo
@@ -72,10 +71,10 @@ fun AppointmentsScreen(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBarWithTitle(
+            StandardTopAppBarComponent(
                 showTrailingIcon = false,
                 showNavigateUp = false,
-                title = stringResource(id = title),
+                title =title,
                 onNavigateUpClick = {  },
                 onTrailingIconClick = {  },
                 trailingIcon = Icons.Outlined.Search

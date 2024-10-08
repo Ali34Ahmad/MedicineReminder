@@ -10,25 +10,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetState
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.medicinereminder.R
-import com.example.medicinereminder.common.components.bottom_sheet.HomeBottomSheet
+import com.example.medicinereminder.common.components.cards.ToolTipCard
 import com.example.medicinereminder.common.components.list_item.AppointmentItem
 import com.example.medicinereminder.common.components.list_item.MedicineReminderItem
-import com.example.medicinereminder.common.components.tooltip.ToolTipCard
-import com.example.medicinereminder.common.utility.extension.toFormattedString
+import com.example.medicinereminder.common.ext.extension.toFormattedString
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.entity.MedicineReminder
-import com.example.medicinereminder.data.model.Reminder
 import com.example.medicinereminder.data.model.ReminderInfo
 import com.example.medicinereminder.presentation.ui.theme.spacing
 import kotlinx.coroutines.CoroutineScope
@@ -73,9 +65,9 @@ fun HomeLazyColumn(
                             MedicineReminderItem(
                                 state = reminder.reminder.reminderState,
                                 medicineName = medicine.name,
-                                subtitle = "${reminder.reminder.doseAmount} ${reminder.pharmaceuticalForm?.name}$suffix",
+                                subtitle = "${reminder.reminder.doseAmount} ${reminder.medicineForm?.name}$suffix",
                                 time = reminder.reminder.dateTime.toFormattedString(),
-                                conflictsNumber = reminder.conflicts.size ,
+                                conflictsNumber = reminder.interactions.size ,
                                 image = medicine.imageFileName,
                                 onClick = {
                                    scope.launch {

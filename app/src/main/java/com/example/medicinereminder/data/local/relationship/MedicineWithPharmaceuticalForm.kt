@@ -3,15 +3,15 @@ package com.example.medicinereminder.data.local.relationship
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.example.medicinereminder.data.local.entity.Medicine
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.entity.MedicineForm
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 data class MedicineWithPharmaceuticalForm(
     @Embedded val medicine: Medicine,
     @Relation(
-        entity = PharmaceuticalForm::class,
-        parentColumn = RoomConstants.Medicine.PHARMACEUTICAL_FORM_ID,
-        entityColumn = RoomConstants.PharmaceuticalForm.ID
+        entity = MedicineForm::class,
+        parentColumn = RoomConstants.Medicine.MEDICINE_FORM_ID,
+        entityColumn = RoomConstants.MedicineForm.ID
     )
-    val pharmaceuticalForm: PharmaceuticalForm
+    val medicineForm: MedicineForm
 )

@@ -9,13 +9,12 @@ import com.example.medicinereminder.data.local.dao.DayProgramDao
 import com.example.medicinereminder.data.local.dao.DoctorDao
 import com.example.medicinereminder.data.local.dao.MedicineDao
 import com.example.medicinereminder.data.local.dao.MedicineReminderDao
-import com.example.medicinereminder.data.local.dao.PharmaceuticalFormDao
+import com.example.medicinereminder.data.local.dao.MedicineFormDao
 import com.example.medicinereminder.data.local.dao.TimeDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -29,7 +28,7 @@ import javax.inject.Singleton
         appDatabase.conflictDao()
 
     @Provides
-    fun providesPharmaceuticalFormDao(appDatabase: AppDatabase): PharmaceuticalFormDao =
+    fun providesPharmaceuticalFormDao(appDatabase: AppDatabase): MedicineFormDao =
         appDatabase.pharmaceuticalFormDao()
 
     @Provides

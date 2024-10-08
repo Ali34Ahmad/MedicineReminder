@@ -25,7 +25,7 @@ fun DialogWithTextField(
     onDismissRequest: () -> Unit,
     onConfirmClick: () -> Unit,
     modifier: Modifier = Modifier,
-
+    @StringRes errorMessage:Int?=null,
 ) {
     if (showDialog) {
         AlertDialog(
@@ -37,6 +37,7 @@ fun DialogWithTextField(
                     label = textFieldLabel,
                     value = textFieldValue,
                     onValueChange = onValueChange,
+                    errorMessage = errorMessage
                 )
             },
             confirmButton = {
@@ -46,7 +47,7 @@ fun DialogWithTextField(
                 }
             },
             dismissButton = {
-                TextButton(onClick = onConfirmClick) {
+                TextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(id = dismissButtonText))
                 }
             }
@@ -65,7 +66,7 @@ fun DialogWithTextFieldPreview(){
                 onConfirmClick = {},
                 textFieldLabel = R.string.form_name,
                 textFieldValue = "Cream",
-                title =R.string.add_form,
+                title =R.string.add_new_form,
                 confirmButtonText = R.string.add,
                 dismissButtonText = R.string.cancel,
                 onValueChange = {},

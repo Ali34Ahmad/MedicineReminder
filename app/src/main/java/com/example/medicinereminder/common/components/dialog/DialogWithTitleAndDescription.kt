@@ -52,7 +52,7 @@ fun DialogWithTitleAndDescriptionPreview(){
                 showDialog = true,
                 onDismissRequest = {},
                 onConfirmClick = {},
-                description = R.string.deletion_confirmation_text_singular,
+                description = R.string.reminder_deletion_confirmation_desc_singular,
                 title =R.string.delete,
                 confirmButtonText = R.string.confirm,
                 dismissButtonText = R.string.cancel,

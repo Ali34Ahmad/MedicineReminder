@@ -1,6 +1,7 @@
 package com.example.medicinereminder.common.components.top_app_bar
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,13 +20,13 @@ import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing
 
 @Composable
-fun TopAppBarWithTitle(
+fun StandardTopAppBarComponent(
     showTrailingIcon: Boolean,
     showNavigateUp: Boolean,
-    title: String,
-    onNavigateUpClick: () -> Unit,
-    onTrailingIconClick: () -> Unit,
     modifier: Modifier = Modifier,
+    @StringRes title: Int?=null,
+    onNavigateUpClick: () -> Unit={},
+    onTrailingIconClick: () -> Unit={},
     @DrawableRes trailingIcon: Int? = null
 ) {
     TopAppBarWrapper(
@@ -41,18 +42,20 @@ fun TopAppBarWithTitle(
                 )
             }
         }
-        Text(
-            text = title,
+        title?.let{
+            Text(
+            text = stringResource(title),
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .weight(1f)
                 .padding(horizontal = MaterialTheme.spacing.small8),
-            )
-        if (showTrailingIcon && trailingIcon != null) {
+        )
+    }
+        if (showTrailingIcon) {
             IconButton(onClick = onTrailingIconClick) {
                 Icon(
-                    imageVector = ImageVector.vectorResource(trailingIcon),
+                    imageVector = ImageVector.vectorResource(Icons.Outlined.More),
                     contentDescription = stringResource(id = R.string.more_options),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -66,13 +69,11 @@ fun TopAppBarWithTitle(
 fun TopAppBarWithNavigateUpButtonWithoutTitlePreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTitle(
+            StandardTopAppBarComponent(
                 showTrailingIcon = true,
                 onNavigateUpClick = {},
-                title = "",
                 onTrailingIconClick = {},
-                showNavigateUp = true,
-                trailingIcon = Icons.Outlined.More
+                showNavigateUp = true
             )
         }
     }
@@ -83,13 +84,12 @@ fun TopAppBarWithNavigateUpButtonWithoutTitlePreview() {
 fun TopAppBarWithNavigateUpButtonWithoutTrailingIconPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTitle(
+            StandardTopAppBarComponent(
                 showTrailingIcon = false,
                 onNavigateUpClick = {},
-                title = "Add Medicine",
+                title = R.string.add_medicine,
                 onTrailingIconClick = {},
-                showNavigateUp = true,
-                trailingIcon = Icons.Outlined.More
+                showNavigateUp = true
             )
         }
     }
@@ -100,13 +100,12 @@ fun TopAppBarWithNavigateUpButtonWithoutTrailingIconPreview() {
 fun TopAppBarWithNavigateUpButtonWithTitleAndTrailingIconPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTitle(
+            StandardTopAppBarComponent(
                 showTrailingIcon = true,
                 onNavigateUpClick = {},
-                title = stringResource(id = R.string.add_medicine),
+                title = R.string.add_medicine,
                 onTrailingIconClick = {},
-                showNavigateUp = true,
-                trailingIcon = Icons.Outlined.More
+                showNavigateUp = true
             )
         }
     }
@@ -117,13 +116,12 @@ fun TopAppBarWithNavigateUpButtonWithTitleAndTrailingIconPreview() {
 fun TopAppBarWithTitleOnlyPreview() {
     MedicineReminderTheme {
         Surface {
-            TopAppBarWithTitle(
+            StandardTopAppBarComponent(
                 showTrailingIcon = false,
                 onNavigateUpClick = {},
-                title = stringResource(id = R.string.app_name),
+                title = R.string.app_name,
                 onTrailingIconClick = {},
                 showNavigateUp = false,
-                trailingIcon = Icons.Outlined.More
             )
         }
     }

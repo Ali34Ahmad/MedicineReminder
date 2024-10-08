@@ -17,8 +17,8 @@ import com.example.medicinereminder.common.components.buttons.FooterButtons
 import com.example.medicinereminder.common.components.list_item.AppointmentItem
 import com.example.medicinereminder.common.components.list_item.BottomSheetItem
 import com.example.medicinereminder.common.components.list_item.MedicineReminderItem
+import com.example.medicinereminder.common.ext.extension.toFormattedString
 import com.example.medicinereminder.common.model.BottomSheetInfo
-import com.example.medicinereminder.common.utility.extension.toFormattedString
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.data.local.entity.MedicineReminder
 import com.example.medicinereminder.data.local.remindersInfo
@@ -35,7 +35,7 @@ fun CustomBottomSheetWithFooter(
     items: List<BottomSheetInfo>,
     onDeleteButtonClick: (ReminderInfo) -> Unit,
     onViewButtonClick: (ReminderInfo) -> Unit,
-    @StringRes viewButtonText:Int,
+    @StringRes viewButtonText: Int,
     @StringRes deleteButtonText: Int,
     onDismissRequest: () -> Unit
 ) {
@@ -46,16 +46,16 @@ fun CustomBottomSheetWithFooter(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLow
     ) {
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium12))
-        when(reminder.reminder){
-            is MedicineReminder ->{
+        when (reminder.reminder) {
+            is MedicineReminder -> {
                 reminder.medicine?.let { medicine ->
-                    val suffix = if(reminder.reminder.doseAmount>1) "s" else ""
+                    val suffix = if (reminder.reminder.doseAmount > 1) "s" else ""
                     MedicineReminderItem(
                         state = reminder.reminder.reminderState,
                         medicineName = medicine.name,
-                        subtitle = "${reminder.reminder.doseAmount} ${reminder.pharmaceuticalForm?.name}$suffix",
+                        subtitle = "${reminder.reminder.doseAmount} ${reminder.medicineForm?.name}$suffix",
                         time = reminder.reminder.dateTime.toFormattedString(),
-                        conflictsNumber = reminder.conflicts.size ,
+                        conflictsNumber = reminder.interactions.size,
                         image = medicine.imageFileName,
                         onClick = {
 
@@ -64,7 +64,8 @@ fun CustomBottomSheetWithFooter(
                     )
                 }
             }
-            is Appointment ->{
+
+            is Appointment -> {
                 reminder.doctor?.let { doctor ->
                     AppointmentItem(
                         doctorName = doctor.name,
@@ -76,16 +77,18 @@ fun CustomBottomSheetWithFooter(
                 }
             }
         }
-        Spacer(modifier = Modifier.height(
-            MaterialTheme.spacing.medium16
-        ))
+        Spacer(
+            modifier = Modifier.height(
+                MaterialTheme.spacing.medium16
+            )
+        )
         items.forEach { data ->
             BottomSheetItem(
                 data = data,
                 modifier = Modifier.padding(
                     vertical = MaterialTheme.spacing.small1
                 )
-                )
+            )
         }
         FooterButtons(
             onLeftButtonClick = {

@@ -1,16 +1,14 @@
 package com.example.medicinereminder.data.local
 
-import androidx.compose.ui.res.stringResource
-import com.example.medicinereminder.R
-import com.example.medicinereminder.common.utility.extension.toLong
+import com.example.medicinereminder.common.ext.extension.toLong
 import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.local.entity.Appointment
-import com.example.medicinereminder.data.local.entity.Conflict
+import com.example.medicinereminder.data.local.entity.Interaction
 import com.example.medicinereminder.data.local.entity.DayProgram
 import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.data.local.entity.Medicine
 import com.example.medicinereminder.data.local.entity.MedicineReminder
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
+import com.example.medicinereminder.data.local.entity.MedicineForm
 import com.example.medicinereminder.data.local.entity.Time
 import com.example.medicinereminder.data.local.relationship.DoctorWithAppointments
 import com.example.medicinereminder.data.local.relationship.MedicineReminderInfo
@@ -55,258 +53,258 @@ val medicine2 = Medicine(
     lastModifiedDate = 8888888888,
     imageFileName = ""
 )
-val pharmaceuticalForms = listOf(
-    PharmaceuticalForm(
+val medicineFormsFakes = listOf(
+    MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = false
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
-    ),PharmaceuticalForm(
+    ),MedicineForm(
         name = "Capsule",
         isAddedByUser = true
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Tablet",
         isAddedByUser = true
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Syrup",
         isAddedByUser = true
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suspension",
         isAddedByUser = true
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Injection",
         isAddedByUser = true
     ),
-    PharmaceuticalForm(
+    MedicineForm(
         name = "Suppository",
         isAddedByUser = false
     ),
@@ -324,7 +322,7 @@ val time = Time(
     lastModifiedDate = 33333333,
     time = 11111111111
 )
-val conflict = Conflict(
+val interaction = Interaction(
     description = "Avoid tea or milk within 3 hours of taking this medication.",
     medicineId = 1
 )
@@ -371,27 +369,27 @@ val appointment2 = Appointment(
     reminderState = ReminderState.TAKEN,
     doctorId = 1
 )
-val pharmaceuticalForm1 = PharmaceuticalForm(
+val medicineForm1 = MedicineForm(
     id = 1 ,
     name = "Cyrup",
     false
 )
-val pharmaceuticalForm2 = PharmaceuticalForm(
+val medicineForm2 = MedicineForm(
     id = 2 ,
     name = "Pill",
     false
 )
-val conflict2 = Conflict(1,"",1)
+val interaction2 = Interaction(1,"",1)
 val medicinesInfo = listOf(
     MedicineReminderInfo(
         medicine = medicine1,
         reminders = listOf(reminder1, reminder2),
-        pharmaceuticalForm = pharmaceuticalForm1, conflicts = listOf(conflict, conflict2)
+        medicineForm = medicineForm1, interactions = listOf(interaction, interaction2)
     ),
     MedicineReminderInfo(
         medicine = medicine2,
         reminders = listOf(reminder3),
-        pharmaceuticalForm = pharmaceuticalForm1, conflicts = listOf(conflict, conflict2)
+        medicineForm = medicineForm1, interactions = listOf(interaction, interaction2)
     ),
 )
 val doctorsAppointments = listOf(

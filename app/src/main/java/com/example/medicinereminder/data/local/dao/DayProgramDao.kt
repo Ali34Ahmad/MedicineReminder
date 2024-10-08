@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Update
-import com.example.medicinereminder.data.local.entity.Conflict
 import com.example.medicinereminder.data.local.entity.DayProgram
 
 @Dao

@@ -8,6 +8,8 @@ import com.example.medicinereminder.data.repositories.impl.AppointmentRepository
 import com.example.medicinereminder.data.repositories.impl.DoctorRepositoryImpl
 import com.example.medicinereminder.data.repositories.impl.MedicineReminderRepositoryImpl
 import com.example.medicinereminder.data.repositories.impl.MedicineRepositoryImpl
+import com.example.medicinereminder.feature.add_medicine.data.MedicineFormRepositoryImpl
+import com.example.medicinereminder.feature.add_medicine.domain.repository.MedicineFormRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -24,6 +26,7 @@ abstract class RepositoriesModule {
     abstract fun bindMedicineRepository(
         medicineRepositoryImpl: MedicineRepositoryImpl
     ): MedicineRepository
+
     @Binds
     @Singleton
     abstract fun bindDoctorRepository(
@@ -39,9 +42,13 @@ abstract class RepositoriesModule {
     @Binds
     @Singleton
     abstract fun bindMedicineReminderRepository(
-        medicineRepositoryImpl: MedicineReminderRepositoryImpl
+        medicineReminderRepositoryImpl: MedicineReminderRepositoryImpl
     ): MedicineReminderRepository
 
-
+    @Binds
+    @Singleton
+    abstract fun bindMedicineFormRepository(
+        medicineFormRepositoryImpl: MedicineFormRepositoryImpl
+    ): MedicineFormRepository
 
 }

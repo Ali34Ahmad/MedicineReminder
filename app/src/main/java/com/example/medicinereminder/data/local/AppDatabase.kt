@@ -12,19 +12,19 @@ import com.example.medicinereminder.data.local.dao.DayProgramDao
 import com.example.medicinereminder.data.local.dao.DoctorDao
 import com.example.medicinereminder.data.local.dao.MedicineDao
 import com.example.medicinereminder.data.local.dao.MedicineReminderDao
-import com.example.medicinereminder.data.local.dao.PharmaceuticalFormDao
+import com.example.medicinereminder.data.local.dao.MedicineFormDao
 import com.example.medicinereminder.data.local.dao.TimeDao
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
 import com.example.medicinereminder.data.local.entity.Appointment
-import com.example.medicinereminder.data.local.entity.Conflict
+import com.example.medicinereminder.data.local.entity.Interaction
 import com.example.medicinereminder.data.local.entity.CycleProgram
 import com.example.medicinereminder.data.local.entity.DayProgram
 import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.data.local.entity.Medicine
 import com.example.medicinereminder.data.local.entity.MedicineReminder
-import com.example.medicinereminder.data.local.entity.PharmaceuticalForm
+import com.example.medicinereminder.data.local.entity.MedicineForm
 import com.example.medicinereminder.data.local.entity.Time
-import com.example.medicinereminder.utilities.RoomConstants
+import com.example.medicinereminder.data.local.utilities.RoomConstants
 
 //TODO("Set exportSchema to true in the final product")
 @Database(
@@ -32,13 +32,13 @@ import com.example.medicinereminder.utilities.RoomConstants
     entities = [
         AlternativeMedicine::class,
         Appointment::class,
-        Conflict::class,
+        Interaction::class,
         CycleProgram::class,
         DayProgram::class,
         Doctor::class,
         Medicine::class,
         MedicineReminder::class,
-        PharmaceuticalForm::class,
+        MedicineForm::class,
         Time::class,
     ]
 )
@@ -51,7 +51,7 @@ abstract class AppDatabase:RoomDatabase() {
     abstract fun dayProgramDao(): DayProgramDao
     abstract fun timeDao(): TimeDao
     abstract fun medicineReminderDao(): MedicineReminderDao
-    abstract fun pharmaceuticalFormDao(): PharmaceuticalFormDao
+    abstract fun pharmaceuticalFormDao(): MedicineFormDao
     abstract fun doctorDao(): DoctorDao
     abstract fun cycleProgramDao(): CycleProgramDao
     abstract fun appointmentDao(): AppointmentDao
@@ -85,6 +85,7 @@ abstract class AppDatabase:RoomDatabase() {
 //                )
                 //TODO("Remove fallbackToDestructiveMigration in the final product")
                 .fallbackToDestructiveMigration()
+                .createFromAsset("database/medicine_form.db")
                 .build()
         }
     }

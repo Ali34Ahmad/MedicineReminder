@@ -10,8 +10,8 @@ fun DoctorWithAppointments.toReminderInfoList() : List<ReminderInfo>{
         reminders.add(ReminderInfo(
             reminder = appointment,
             doctor = this.doctor,
-            pharmaceuticalForm = null,
-            conflicts = emptyList(),
+            medicineForm = null,
+            interactions = emptyList(),
             medicine = null,
             type = ReminderType.APPOINTMENT
         ))

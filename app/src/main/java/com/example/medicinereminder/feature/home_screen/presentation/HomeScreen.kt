@@ -28,7 +28,7 @@ import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.bottom_sheet.HomeBottomSheet
 import com.example.medicinereminder.common.components.lazy_column.HomeLazyColumn
 import com.example.medicinereminder.common.components.tab.ScrollableTab
-import com.example.medicinereminder.common.components.top_app_bar.TopAppBarWithTitle
+import com.example.medicinereminder.common.components.top_app_bar.StandardTopAppBarComponent
 import com.example.medicinereminder.data.enums.ReminderState
 import com.example.medicinereminder.data.enums.ReminderType
 import com.example.medicinereminder.data.local.entity.MedicineReminder
@@ -72,10 +72,10 @@ fun HomeScreen(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBarWithTitle(
+            StandardTopAppBarComponent(
                 showTrailingIcon = false,
                 showNavigateUp = false,
-                title = stringResource(id = title),
+                title = title,
                 onNavigateUpClick = {  },
                 onTrailingIconClick = {  })
         },
