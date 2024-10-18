@@ -9,6 +9,5 @@ class DeleteMedicineFormUseCase @Inject constructor(
 ){
     suspend operator fun invoke(medicineForm: MedicineForm){
         medicineFormRepository.deleteMedicineForm(medicineForm)
-
     }
 }

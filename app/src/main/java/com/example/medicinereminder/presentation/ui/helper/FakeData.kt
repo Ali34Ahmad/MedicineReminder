@@ -6,46 +6,43 @@ import com.example.medicinereminder.data.enums.ReminderState
 
 val appointmentTableItems = listOf(
     AppointmentTableItemInfo(
-        selected = true,
+        selected = false,
         date = "Sep 10, 2024",
         time = "12:00 PM",
         modifiedAt = "Sep 5, 2024",
         state = ReminderState.TAKEN,
-    ),
-    AppointmentTableItemInfo(
-        selected = true,
-        date = "Sep 10, 2024",
-        time = "12:00 PM",
-        modifiedAt = "Sep 5, 2024",
-        state = ReminderState.UNSPECIFIED,
+        appointmentId = 0
     ),
     AppointmentTableItemInfo(
         selected = false,
         date = "Sep 10, 2024",
         time = "12:00 PM",
         modifiedAt = "Sep 5, 2024",
-        state = ReminderState.STOPPED,
-    ),
-    AppointmentTableItemInfo(
-        selected = true,
-        date = "Sep 10, 2024",
-        time = "12:00 PM",
-        modifiedAt = "Sep 5, 2024",
-        state = ReminderState.UNSPECIFIED,
+        state = ReminderState.TAKEN,
+        appointmentId = 1
     ),
     AppointmentTableItemInfo(
         selected = false,
         date = "Sep 10, 2024",
         time = "12:00 PM",
         modifiedAt = "Sep 5, 2024",
-        state = ReminderState.UNSPECIFIED,
+        state = ReminderState.UPCOMING,
+        appointmentId = 3
     ),
     AppointmentTableItemInfo(
         selected = false,
         date = "Sep 10, 2024",
         time = "12:00 PM",
         modifiedAt = "Sep 5, 2024",
-        state = ReminderState.UNSPECIFIED,
+        state = ReminderState.UPCOMING,
+        appointmentId = 4
     ),
-
+    AppointmentTableItemInfo(
+        selected = false,
+        date = "Sep 10, 2024",
+        time = "12:00 PM",
+        modifiedAt = "Sep 5, 2024",
+        state = ReminderState.UPCOMING,
+        appointmentId = 5
+    ),
     )

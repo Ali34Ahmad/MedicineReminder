@@ -1,24 +1,22 @@
 package com.example.medicinereminder.common.ext.extension
 
-import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-
+import java.util.Locale
 
 fun LocalDateTime.toLong(): Long {
     val zoneId: ZoneId = ZoneId.systemDefault()
     return this.atZone(zoneId).toInstant().toEpochMilli()
 }
 
-fun longToLocalDateTime(milliseconds: Long): LocalDateTime {
-    val zoneId: ZoneId = ZoneId.systemDefault() // Or your desired ZoneId
-    return LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), zoneId)
-}
-val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
-fun LocalDateTime.toFormattedString(): String {
+
+fun LocalDateTime.toTimeFormattedString(): String {
+    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a",Locale.getDefault())
     return this.format(formatter)
 }
-fun Long.toFormattedString(): String {
-    return longToLocalDateTime(this).toFormattedString()
+
+fun LocalDateTime.toDateFormattedString(): String{
+    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy",Locale.getDefault())
+    return this.format(formatter)
 }

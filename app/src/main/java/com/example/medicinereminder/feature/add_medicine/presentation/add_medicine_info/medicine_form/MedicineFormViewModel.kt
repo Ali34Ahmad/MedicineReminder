@@ -125,7 +125,7 @@ class MedicineFormViewModel @Inject constructor(
             addMedicineFormUseCase(
                 MedicineForm(
                     name = uiState.value.medicineFormText,
-                    isAddedByUser = true
+                    isAddedByUser = true,
                 )
             )
             _uiState.update {

@@ -1,9 +1,9 @@
 package com.example.medicinereminder.data.repositories.di
 
-import com.example.medicinereminder.data.repositories.AppointmentRepository
-import com.example.medicinereminder.data.repositories.DoctorRepository
-import com.example.medicinereminder.data.repositories.MedicineReminderRepository
-import com.example.medicinereminder.data.repositories.MedicineRepository
+import com.example.medicinereminder.domain.repository.AppointmentRepository
+import com.example.medicinereminder.domain.repository.DoctorRepository
+import com.example.medicinereminder.domain.repository.MedicineReminderRepository
+import com.example.medicinereminder.domain.repository.MedicineRepository
 import com.example.medicinereminder.data.repositories.impl.AppointmentRepositoryImpl
 import com.example.medicinereminder.data.repositories.impl.DoctorRepositoryImpl
 import com.example.medicinereminder.data.repositories.impl.MedicineReminderRepositoryImpl
