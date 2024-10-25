@@ -2,7 +2,7 @@
 #Dependencies
 activity = "1.9.2"
 activityKtx = "1.9.2"
-agp = "8.5.2"
+agp = "8.7.1"
 desugarJdkLibs = "2.1.2"
 kotlin = "2.0.0"
 coreKtx = "1.13.1"

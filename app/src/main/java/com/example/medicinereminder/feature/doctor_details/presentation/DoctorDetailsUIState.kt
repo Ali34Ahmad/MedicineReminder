@@ -1,8 +1,10 @@
 package com.example.medicinereminder.feature.doctor_details.presentation
 
+import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.feature.appointment_screen.presentation.appointments_main.AppointmentsTab
 
 data class DoctorDetailsUIState(
+    val doctor: Doctor = Doctor(name = "no name", specialty = "not specified"),
     val selectedTab: AppointmentsTab = AppointmentsTab.UPCOMING,
     val isMarkAsButtonShown:Boolean = false,
     val isOptionsMenuShown: Boolean = false,

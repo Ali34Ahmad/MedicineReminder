@@ -22,7 +22,7 @@ import java.time.LocalDateTime
 val doctor1 = Doctor(
     name = "Dr. Jaoher Zenah",
     phoneNumber = "1234567890",
-    specialty = "Dentist",
+    specialty = "Ophthalmologist",
     imageFileName = "",
     address = Address(
         stateOrGovernorate = "Syria",

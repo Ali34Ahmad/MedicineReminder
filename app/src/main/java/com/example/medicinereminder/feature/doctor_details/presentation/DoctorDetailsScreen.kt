@@ -5,16 +5,13 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,23 +29,17 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.R
-import com.example.medicinereminder.common.components.buttons.ButtonRow
 import com.example.medicinereminder.common.components.composables.AppointmentTable
 import com.example.medicinereminder.common.components.composables.ContactInfoItem
 import com.example.medicinereminder.common.components.tab.ScrollableTab
@@ -56,12 +47,9 @@ import com.example.medicinereminder.common.components.texts.TitleAndSubtitle
 import com.example.medicinereminder.common.components.top_app_bar.DetailsTopAppBar
 import com.example.medicinereminder.common.model.AppointmentTableItemInfo
 import com.example.medicinereminder.data.enums.ReminderState
-import com.example.medicinereminder.data.local.entity.Doctor
-import com.example.medicinereminder.data.model.Address
 import com.example.medicinereminder.feature.appointment_screen.presentation.appointments_main.AppointmentsTab
 import com.example.medicinereminder.feature.doctor_details.component.composables.DoctorDetailsBottomBar
 import com.example.medicinereminder.feature.doctor_details.component.composables.ShowDialogBox
-import com.example.medicinereminder.feature.doctor_details.component.menu.DoctorOptionMenu
 import com.example.medicinereminder.presentation.ui.helper.appointmentTableItems
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.sizing
@@ -71,7 +59,6 @@ import com.example.medicinereminder.presentation.ui.theme.spacing
 @Composable
 fun DoctorDetailsScreen(
     modifier: Modifier = Modifier,
-    doctor: Doctor,
     tableItems: List<AppointmentTableItemInfo>,
     uiState: DoctorDetailsUIState,
     onAction: (DoctorDetailsAction) -> Unit
@@ -156,8 +143,8 @@ fun DoctorDetailsScreen(
                             )
                             Spacer(modifier = Modifier.width(MaterialTheme.spacing.small8))
                             TitleAndSubtitle(
-                                title = doctor.name,
-                                subtitle = doctor.specialty,
+                                title = uiState.doctor.name,
+                                subtitle = uiState.doctor.specialty,
                                 isWarning = false
                             )
                         }
@@ -192,7 +179,7 @@ fun DoctorDetailsScreen(
                 isExtraMenuExpanded = uiState.isExtraDetailsMenuOpen,
                 onDetailsButtonClick = {
                     onAction(
-                        DoctorDetailsAction.EditDetails(doctorId = doctor.id)
+                        DoctorDetailsAction.EditDetails(doctorId = uiState.doctor.id)
                     )
                 },
                 onExtraMenuDismissRequest = {
@@ -202,12 +189,12 @@ fun DoctorDetailsScreen(
                 },
                 onAllButtonClick = {
                     onAction(
-                        DoctorDetailsAction.EditAll(doctorId = doctor.id)
+                        DoctorDetailsAction.EditAll(doctorId = uiState.doctor.id)
                     )
                 },
                 onPhotoButtonClick = {
                     onAction(
-                        DoctorDetailsAction.EditImage(doctorId = doctor.id)
+                        DoctorDetailsAction.EditImage(doctorId = uiState.doctor.id)
                     )
                 }
             )
@@ -222,7 +209,7 @@ fun DoctorDetailsScreen(
                 },
                 onBookButtonClick = {
                     onAction(
-                        DoctorDetailsAction.BookAppointment(doctorId = doctor.id)
+                        DoctorDetailsAction.BookAppointment(doctorId = uiState.doctor.id)
                     )
                 },
                 onMarkAsButtonClick = {
@@ -281,7 +268,7 @@ fun DoctorDetailsScreen(
                             modifier = Modifier.padding(
                                 horizontal = MaterialTheme.spacing.medium16
                             ),
-                            text = doctor.name,
+                            text = uiState.doctor.name,
                             style = MaterialTheme.typography.titleLarge
                         )
                         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small8))
@@ -289,7 +276,7 @@ fun DoctorDetailsScreen(
                             modifier = Modifier.padding(
                                 horizontal = MaterialTheme.spacing.medium16
                             ),
-                            text = doctor.specialty,
+                            text = uiState.doctor.specialty,
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium16))
@@ -308,7 +295,7 @@ fun DoctorDetailsScreen(
                             style = MaterialTheme.typography.titleMedium
                         )
 
-                        doctor.phoneNumber?.let {
+                        uiState.doctor.phoneNumber?.let {
                             ContactInfoItem(
                                 modifier = Modifier.padding(
                                     horizontal = MaterialTheme.spacing.medium16
@@ -318,7 +305,7 @@ fun DoctorDetailsScreen(
                                 onClick = {}
                             )
                         }
-                        doctor.address?.let {
+                        uiState.doctor.address?.let {
                             ContactInfoItem(
                                 modifier = Modifier.padding(
                                     horizontal = MaterialTheme.spacing.medium16
@@ -446,7 +433,7 @@ fun DoctorDetailsScreen(
             }
            ShowDialogBox(
                state = uiState.showingDialogBox,
-               doctorName = doctor.name,
+               doctorName = uiState.doctor.name,
                onAction = onAction,
                appointmentNumber = tableItems.filter { it.selected }.size
            )
@@ -460,17 +447,6 @@ fun DoctorDetailsScreen(
 fun DoctorScreenPreview() {
     MedicineReminderTheme {
         DoctorDetailsScreen(
-            doctor = Doctor(
-                name = "Dr. Jaoher Zenah",
-                phoneNumber = "1234567890",
-                specialty = "Dentist",
-                imageFileName = "",
-                address = Address(
-                    stateOrGovernorate = "Syria",
-                    city = "Lattakia",
-                    street = "Al Zera'ah _ Al Awokaf"
-                )
-            ),
             tableItems = appointmentTableItems,
             uiState = DoctorDetailsUIState(),
             onAction = {

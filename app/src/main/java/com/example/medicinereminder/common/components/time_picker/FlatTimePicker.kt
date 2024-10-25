@@ -26,6 +26,7 @@ import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePrevi
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.time.LocalTime
 
 val list = MutableList(12) { it + 1 }
 
@@ -33,7 +34,9 @@ val list = MutableList(12) { it + 1 }
 fun FlatTimePicker(
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState(),
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    selectedTime: LocalTime?,
+    onTimeSelected: (LocalTime) -> Unit
 ) {
     val items = remember {
         mutableStateListOf(
@@ -130,7 +133,10 @@ fun InfiniteLazyColumnPreview() {
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center,
             ) {
-                FlatTimePicker()
+                FlatTimePicker(
+                    selectedTime = null,
+                    onTimeSelected = {}
+                )
             }
         }
     }

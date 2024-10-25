@@ -53,13 +53,16 @@ fun StandardTopAppBarComponent(
         )
     }
         if (showTrailingIcon) {
-            IconButton(onClick = onTrailingIconClick) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(Icons.Outlined.More),
-                    contentDescription = stringResource(id = R.string.more_options),
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            trailingIcon?.let {
+                IconButton(onClick = onTrailingIconClick) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(it),
+                        contentDescription = stringResource(id = R.string.more_options),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
+
         }
     }
 }

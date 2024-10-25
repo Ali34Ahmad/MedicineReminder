@@ -133,4 +133,8 @@
     <string name="delete_appointments_message">Do you want to delete the selected appointment ?</string>
     <string name="delete_reminders">Delete reminders</string>
     <string name="stop_reminders_message">"Do you want to stop appointments for Dr. %1$s ? \nyou can activate them later "</string>
+    <string name="add_appointment">Add appointment</string>
+    <string name="replace">Replace</string>
+    <string name="replace_doctor_message">Do you want to replace Dr %1$s ?</string>
+    <string name="replace_doctor">Replace doctor</string>
 </resources>
