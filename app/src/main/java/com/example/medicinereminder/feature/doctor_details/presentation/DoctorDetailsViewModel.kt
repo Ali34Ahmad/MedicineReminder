@@ -10,6 +10,7 @@ import com.example.medicinereminder.common.ext.extension.toLocalDateTime
 import com.example.medicinereminder.common.ext.extension.toTimeFormattedString
 import com.example.medicinereminder.common.model.AppointmentTableItemInfo
 import com.example.medicinereminder.data.enums.ReminderState
+import com.example.medicinereminder.data.local.doctor1
 import com.example.medicinereminder.data.local.entity.Appointment
 import com.example.medicinereminder.domain.usecase.appointment_use_cases.DeleteAppointmentUseCase
 import com.example.medicinereminder.domain.usecase.appointment_use_cases.GetAppointmentsByDoctorId
@@ -23,6 +24,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,13 +37,13 @@ class DoctorDetailsViewModel @Inject constructor(
     private val updateAppointmentUseCase: UpdateAppointmentUseCase,
     private val deleteAppointmentsUseCase: DeleteAppointmentUseCase,
 ): ViewModel() {
+    //replace it from nav controller
     private val fakeId = 1
     val doctor = getDoctorByIdUseCase(fakeId).stateIn(
         scope = viewModelScope,
         initialValue = null,
         started = SharingStarted.WhileSubscribed(5000)
     )
-
     private val _uiState = mutableStateOf(DoctorDetailsUIState())
     val uiState: State<DoctorDetailsUIState> = _uiState
 
@@ -67,6 +69,10 @@ class DoctorDetailsViewModel @Inject constructor(
                     )
                 }
             }
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            val doctor = getDoctorByIdUseCase(fakeId).first()
+            _uiState.value = _uiState.value.copy(doctor = doctor)
         }
     }
 

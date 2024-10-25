@@ -1,10 +1,8 @@
 package com.example.medicinereminder.common.utility.extension
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun listFromRange(
     startDate: LocalDate,
     endDate: LocalDate
