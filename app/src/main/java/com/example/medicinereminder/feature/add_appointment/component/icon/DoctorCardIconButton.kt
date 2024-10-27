@@ -44,6 +44,8 @@ fun BoxScope.DoctorCardIconButton(
             modifier = Modifier.size(MaterialTheme.sizing.medium24)
                 .graphicsLayer {
                     rotationZ = angle
+                    scaleY = 1.2f
+                    scaleX = 1.2f
                 },
             imageVector = ImageVector.vectorResource(id = R.drawable.baseline_expand_less_24),
             contentDescription = null,

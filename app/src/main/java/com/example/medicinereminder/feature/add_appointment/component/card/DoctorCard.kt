@@ -50,7 +50,7 @@ import com.example.medicinereminder.presentation.ui.theme.spacing
 fun DoctorCard(
     modifier: Modifier = Modifier,
     doctor: Doctor,
-    isExpanded: Boolean = false,
+    isExpanded: Boolean,
     onExpand: () -> Unit
 ) {
 
@@ -88,10 +88,10 @@ fun DoctorCard(
                         }
                     },
                 shape = RoundedCornerShape(cornerRadius),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.4f)),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f)),
                 border = BorderStroke(
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    width = MaterialTheme.sizing.small1
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    width = MaterialTheme.sizing.small2
                 ),
             ) {
                 Column(

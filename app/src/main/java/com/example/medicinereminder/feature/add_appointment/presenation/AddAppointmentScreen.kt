@@ -13,6 +13,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,15 +25,15 @@ import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.buttons.ButtonRow
 import com.example.medicinereminder.common.components.composables.PickDateComponent
 import com.example.medicinereminder.common.components.dialog.CustomDatePickerDialog
-import com.example.medicinereminder.common.components.time_picker.FlatTimePicker
 import com.example.medicinereminder.common.components.top_app_bar.StandardTopAppBarComponent
 import com.example.medicinereminder.data.local.doctor1
-import com.example.medicinereminder.data.local.doctor2
 import com.example.medicinereminder.feature.add_appointment.component.card.DoctorCard
 import com.example.medicinereminder.feature.add_appointment.component.dialog.ReplaceDoctorDialogBox
+import com.example.medicinereminder.feature.add_appointment.component.time_picker.CustomTimePicker
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing
 import java.time.LocalDate
+import java.time.LocalTime
 
 @Composable
 fun AddAppointmentScreen(
@@ -121,12 +122,23 @@ fun AddAppointmentScreen(
                     color = MaterialTheme.colorScheme.surfaceContainerLow
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.small8))
-                FlatTimePicker(
-                    modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium16),
-                    selectedTime = uiState.selectedTime,
-                    onTimeSelected = {
+                CustomTimePicker(
+                    modifier = Modifier.fillMaxWidth().padding(
+                        horizontal = MaterialTheme.spacing.medium16
+                    ),
+                    onPeriodSelected = {
                         onAction(
-                            AddAppointmentAction.SelectTime(it)
+                            AddAppointmentAction.SelectPeriod(it)
+                        )
+                    },
+                    onHourSelected = {
+                        onAction(
+                            AddAppointmentAction.SelectHour(it)
+                        )
+                    },
+                    onMinutesSelected = {
+                        onAction(
+                            AddAppointmentAction.SelectMinute(it)
                         )
                     }
                 )
@@ -181,7 +193,6 @@ fun AddAppointmentScreenPreview() {
         AddAppointmentScreen(
             onAction = {
                 when(it){
-                    AddAppointmentAction.Cancel -> uiState = uiState.copy(isConfirmButtonEnabled = !uiState.isConfirmButtonEnabled)
                     AddAppointmentAction.HideCalender -> {
                         uiState = uiState.copy(isCalenderShown = false)
                     }
@@ -193,6 +204,21 @@ fun AddAppointmentScreenPreview() {
                     }
                     AddAppointmentAction.ShowDialogBox -> {
                         uiState = uiState.copy(isDialogBoxShown = true)
+                    }
+                    is AddAppointmentAction.SelectPeriod ->{
+                        uiState = uiState.copy(selectedPeriod = it.period)
+                    }
+                    is AddAppointmentAction.SelectHour ->{
+                        uiState = uiState.copy(selectedHour = it.hour)
+                    }
+                    is AddAppointmentAction.SelectMinute ->{
+                        uiState = uiState.copy(selectedMinute = it.minute)
+                    }
+                    is AddAppointmentAction.SelectDate -> {
+                        uiState = uiState.copy(selectedDate = it.date)
+                        if(!uiState.isConfirmButtonEnabled){
+                            uiState = uiState.copy(isConfirmButtonEnabled = true)
+                        }
                     }
                     else -> {}
                 }

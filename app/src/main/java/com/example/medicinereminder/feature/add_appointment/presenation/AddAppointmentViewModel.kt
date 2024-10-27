@@ -44,12 +44,12 @@ class AddAppointmentViewModel @Inject constructor(
         when(action){
             AddAppointmentAction.Confirm -> {
                     viewModelScope.launch(Dispatchers.IO) {
-
-                        val dateTime = LocalDateTime.of(
-                        uiState.value.selectedDate?: LocalDate.now(),
-                        _uiState.value.selectedTime?: LocalTime.now()
+                        val extraHours = if(_uiState.value.selectedPeriod=="PM") 12 else 0
+                        val time = LocalTime.of(
+                        _uiState.value.selectedHour + extraHours,
+                        _uiState.value.selectedMinute,
                         )
-
+                        val dateTime = LocalDateTime.of(_uiState.value.selectedDate,time)
                         val appointment = Appointment(
                             doctorId = _uiState.value.doctor.id,
                             dateTime = dateTime.toLong(),
@@ -73,21 +73,12 @@ class AddAppointmentViewModel @Inject constructor(
             }
             is AddAppointmentAction.SelectDate -> {
                 _uiState.value = _uiState.value.copy(selectedDate = action.date)
-            }
-            is AddAppointmentAction.SelectTime -> {
-                _uiState.value = _uiState.value.copy(selectedTime = action.time)
-                if(_uiState.value.selectedTime != null && _uiState.value.selectedDate != null && !_uiState.value.isConfirmButtonEnabled)
+                if(!_uiState.value.isConfirmButtonEnabled){
                     onAction(
                         AddAppointmentAction.EnableConfirmButton
                     )
-                else if(
-                    _uiState.value.isConfirmButtonEnabled
-                    && !(_uiState.value.selectedTime != null && _uiState.value.selectedDate == null)
-                    ){
-                    onAction(
-                        AddAppointmentAction.DisableConfirmButton
-                    )
                 }
+
             }
             AddAppointmentAction.DisableConfirmButton -> {
                 _uiState.value = _uiState.value.copy(isConfirmButtonEnabled = false)
@@ -104,6 +95,16 @@ class AddAppointmentViewModel @Inject constructor(
             AddAppointmentAction.ReplaceDoctor -> TODO("need navigate to the add doctor screen")
             AddAppointmentAction.NavigateBack -> TODO("need navigation")
             AddAppointmentAction.Cancel -> TODO("navigate back using navigation")
+            //time picker
+            is AddAppointmentAction.SelectHour -> {
+                _uiState.value = _uiState.value.copy(selectedHour = action.hour)
+            }
+            is AddAppointmentAction.SelectMinute -> {
+                _uiState.value = _uiState.value.copy(selectedHour = action.minute)
+            }
+            is AddAppointmentAction.SelectPeriod -> {
+                _uiState.value = _uiState.value.copy(selectedPeriod = action.period)
+            }
         }
     }
 

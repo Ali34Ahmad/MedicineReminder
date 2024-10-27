@@ -137,4 +137,9 @@
     <string name="replace">Replace</string>
     <string name="replace_doctor_message">Do you want to replace Dr %1$s ?</string>
     <string name="replace_doctor">Replace doctor</string>
+    <string name="hr">Hr</string>
+    <string name="min">Min</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+    <string name="pick_time">Pick a time</string>
 </resources>

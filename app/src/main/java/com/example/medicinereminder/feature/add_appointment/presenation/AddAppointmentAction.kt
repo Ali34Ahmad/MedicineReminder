@@ -19,7 +19,9 @@ sealed interface AddAppointmentAction {
     data object HideCalender: AddAppointmentAction
 
     //time picker
-    data class SelectTime(val time: LocalTime): AddAppointmentAction
+    data class SelectHour(val hour: Int): AddAppointmentAction
+    data class SelectMinute(val minute: Int): AddAppointmentAction
+    data class SelectPeriod(val period: String) : AddAppointmentAction
 
     //bottom bar
     data object Cancel: AddAppointmentAction
