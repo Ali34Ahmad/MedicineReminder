@@ -1,6 +1,5 @@
 package com.example.medicinereminder.common.components.time_picker
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -136,11 +135,11 @@ fun CustomTimePickerPreview() {
             CustomPicker(
                 items =listOf<Int>(1,2,3,4,5,6,7,8,9,10,11,12),
                 onItemSelected = {
-                    selectedItem.value = it
+                    selectedItem.intValue = it
                 }
             )
             Spacer(Modifier.height(40.dp))
-            Text("selected item : "+selectedItem.value.toString(), fontSize = 24.sp)
+            Text("selected item : "+selectedItem.intValue.toString(), fontSize = 24.sp)
         }
     }
 }
