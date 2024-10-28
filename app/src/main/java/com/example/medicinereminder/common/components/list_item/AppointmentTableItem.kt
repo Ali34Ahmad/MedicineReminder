@@ -34,8 +34,8 @@ fun AppointmentTableItem(
     modifier: Modifier = Modifier,
     appointmentTableItemInfo: AppointmentTableItemInfo,
     nextItemIsSelected: Boolean,
-    onLongClick:(index:Int)->Unit,
-    currentIndex:Int,
+    onLongClick:(item:AppointmentTableItemInfo)->Unit,
+    currentItem:AppointmentTableItemInfo,
 ) {
     val alpha =
         if (appointmentTableItemInfo.state == ReminderState.STOPPED)
@@ -63,7 +63,7 @@ fun AppointmentTableItem(
                 color = backgroundColor
             )
             .combinedClickable(
-                onLongClick = {onLongClick(currentIndex)},
+                onLongClick = {onLongClick(currentItem)},
                 interactionSource = remember {
                     MutableInteractionSource()
                 },
@@ -121,7 +121,7 @@ fun AppointmentTableItemSelectedPreview() {
             AppointmentTableItem(
                 appointmentTableItemInfo = appointmentTableItems[0],
                 nextItemIsSelected = false,
-                currentIndex = 0,
+                currentItem = appointmentTableItems[0],
                 onLongClick = {},
             )
         }
@@ -136,7 +136,7 @@ fun AppointmentTableItemPreview() {
             AppointmentTableItem(
                 appointmentTableItemInfo = appointmentTableItems[5],
                 nextItemIsSelected = false,
-                currentIndex = 0,
+                currentItem = appointmentTableItems[5],
                 onLongClick = {},
             )
         }
@@ -151,7 +151,7 @@ fun DisabledAppointmentTableItemPreview() {
             AppointmentTableItem(
                 appointmentTableItemInfo = appointmentTableItems[5],
                 nextItemIsSelected = true,
-                currentIndex = 0,
+                currentItem = appointmentTableItems[5],
                 onLongClick = {},
             )
         }
@@ -166,7 +166,7 @@ fun AppointmentTableItemStoppedPreview() {
             AppointmentTableItem(
                 appointmentTableItemInfo = appointmentTableItems[2],
                 nextItemIsSelected = true,
-                currentIndex = 0,
+                currentItem = appointmentTableItems[2],
                 onLongClick = {},
             )
         }

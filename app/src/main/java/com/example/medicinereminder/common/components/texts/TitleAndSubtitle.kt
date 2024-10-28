@@ -36,7 +36,7 @@ fun TitleAndSubtitle(
         )
         Text(
             text = subtitle,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.bodyMedium,
             color = subtitleColor,
             modifier = Modifier.height(MaterialTheme.spacing.medium24)
         )

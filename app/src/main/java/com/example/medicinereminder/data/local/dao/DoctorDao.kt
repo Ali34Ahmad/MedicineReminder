@@ -5,11 +5,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import androidx.room.Update
 import androidx.room.Upsert
 import com.example.medicinereminder.data.local.entity.Doctor
-import com.example.medicinereminder.data.local.relationship.DoctorWithAppointments
+import com.example.medicinereminder.data.model.DoctorWithAppointment
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -25,7 +24,7 @@ interface DoctorDao {
     suspend fun updateDoctor(doctor: Doctor)
 
     @Delete
-    suspend fun deleteDoctor(doctor: Doctor)
+    fun deleteDoctor(doctor: Doctor)
 
     @Query("""
         SELECT *
@@ -33,25 +32,27 @@ interface DoctorDao {
     """)
     fun getAllDoctors() : Flow<List<Doctor>>
 
-    @Transaction
-    @Query("""
-        SELECT * 
-        FROM doctor
-        WHERE id in (
-            SELECT doctor_id
-            FROM appointment
-            WHERE date_time  BETWEEN
-        strftime('%s', 'now', 'start of day') * 1000 AND
-        strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
-        )
-    """)
-    fun getDailyAppointments(): Flow<List<DoctorWithAppointments>>
+    @Query("SELECT * FROM doctor WHERE id = :id")
+    fun getDoctorById(id: Int): Flow<Doctor>
 
-    @Transaction
+
     @Query("""
         SELECT * 
         FROM doctor
+        INNER JOIN appointment ON doctor.id = appointment.doctor_id
+        WHERE date_time  BETWEEN strftime('%s', 'now', 'start of day') * 1000 AND
+        strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
+        ORDER BY appointment.date_time ASC
     """)
-    fun getDoctorsWithAppointments(): Flow<List<DoctorWithAppointments>>
+    fun getTodayDoctorsWithAppointments() : Flow<List<DoctorWithAppointment>>
+
+    @Query("""
+        SELECT *
+        FROM doctor
+        INNER JOIN appointment ON doctor.id = appointment.doctor_id
+        ORDER BY appointment.date_time ASC
+    """)
+    fun getDoctorsWithAppointments() : Flow<List<DoctorWithAppointment>>
+
 
 }

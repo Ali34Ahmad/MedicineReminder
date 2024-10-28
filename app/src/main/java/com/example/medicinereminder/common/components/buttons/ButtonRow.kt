@@ -27,6 +27,7 @@ fun ButtonRow(
     onPrimaryButtonClick: () -> Unit,
     onSecondaryButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
+    isPrimaryButtonEnabled: Boolean = true
 ) {
     Box(modifier=modifier){
         Row(
@@ -47,6 +48,7 @@ fun ButtonRow(
             Button(
                 onClick = onPrimaryButtonClick,
                 modifier = Modifier.weight(1f),
+                enabled = isPrimaryButtonEnabled
             ) {
                 Text(
                     text = stringResource(primaryButtonText),

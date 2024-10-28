@@ -8,15 +8,14 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.example.medicinereminder.data.local.entity.AlternativeMedicine
 import com.example.medicinereminder.data.local.entity.Medicine
-import com.example.medicinereminder.data.local.medicine1
 import com.example.medicinereminder.data.local.relationship.MedicineReminderInfo
 import com.example.medicinereminder.data.local.relationship.MedicineWithAllDetails
 import com.example.medicinereminder.data.local.relationship.MedicineWithAlternativeMedicines
 import com.example.medicinereminder.data.local.relationship.MedicineWithConflicts
 import com.example.medicinereminder.data.local.relationship.MedicineWithDayProgramsAndTimes
 import com.example.medicinereminder.data.local.relationship.MedicineWithDoctor
-import com.example.medicinereminder.data.local.relationship.MedicineWithMedicineReminder
 import com.example.medicinereminder.data.local.relationship.MedicineWithPharmaceuticalForm
+import com.example.medicinereminder.data.model.MedicineWithReminder
 import kotlinx.coroutines.flow.Flow
 import java.util.Collections.emptyList
 
@@ -98,20 +97,27 @@ interface MedicineDao {
     @Query("SELECT * FROM medicine WHERE id = :medicineId")
     fun getMedicineReminderInfo(medicineId: Int) :Flow<MedicineReminderInfo>
 
-
+    @Transaction
+    @Query("""
+        SELECT *
+        FROM medicine
+        INNER JOIN medicine_form ON medicine.medicine_form_id = medicine_form.medicine_from_id
+        INNER JOIN medicine_reminder ON medicine.id = medicine_reminder.medicine_id
+        ORDER BY medicine_reminder.date_time ASC
+    """)
+    fun getMedicinesWithReminders() : Flow<List<MedicineWithReminder>>
 
     @Transaction
     @Query("""
-        SELECT * 
+        SELECT *
         FROM medicine
-        WHERE id in (
-            SELECT medicine_id
-            FROM medicine_reminder
-            WHERE date_time BETWEEN
-            strftime('%s', 'now', 'start of day') * 1000 AND
-            strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
-        )
+        INNER JOIN medicine_form ON medicine.medicine_form_id = medicine_form.medicine_from_id
+        INNER JOIN medicine_reminder ON medicine.id = medicine_reminder.medicine_id
+        WHERE medicine_reminder.date_time  BETWEEN strftime('%s', 'now', 'start of day') * 1000 AND
+        strftime('%s', 'now', 'start of day', '+1 day') * 1000 - 1
+        ORDER BY medicine_reminder.date_time ASC
     """)
-    fun getDailyMedicineReminders() : Flow<List<MedicineReminderInfo>>
+    fun getTodayMedicinesWithReminders(): Flow<List<MedicineWithReminder>>
+
 
 }

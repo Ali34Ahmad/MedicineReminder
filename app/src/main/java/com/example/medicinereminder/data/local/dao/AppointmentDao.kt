@@ -6,16 +6,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import androidx.room.Upsert
 import com.example.medicinereminder.data.local.entity.Appointment
-import com.example.medicinereminder.data.local.utilities.RoomConstants
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AppointmentDao {
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insertAppointment(appointment: Appointment)
+    suspend fun addNewAppointment(appointment: Appointment)
 
     @Update
     suspend fun updateAppointment(appointment: Appointment)
@@ -24,9 +22,10 @@ interface AppointmentDao {
     fun deleteAppointment(appointment: Appointment)
 
     @Query("""
-        SELECT * FROM appointment 
-        ORDER BY date_added
-        """)
-    fun getAllAppointments() : Flow<List<Appointment>>
+        SELECT * 
+        FROM appointment
+        WHERE doctor_id = :id
+    """)
+    fun getAppointmentsByDoctorId(id: Int) : Flow<List<Appointment>>
 
 }

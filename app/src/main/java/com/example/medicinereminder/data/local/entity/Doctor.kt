@@ -15,5 +15,5 @@ data class Doctor(
     val specialty: String,
     @Embedded val address: Address? = null,
     @ColumnInfo(name = RoomConstants.Doctor.PHONE_NUMBER) val phoneNumber: String? = null,
-    @ColumnInfo(name = RoomConstants.Doctor.IMAGE_FILE_NAME) val imageFileName: String,
+    @ColumnInfo(name = RoomConstants.Doctor.IMAGE_FILE_NAME) val imageFileName: String? = null,
 )

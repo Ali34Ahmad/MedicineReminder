@@ -8,4 +8,8 @@ data class Address(
     val street: String? = null,
     val buildingNumber: String? = null,
     val apartmentNumber: String? = null,
-)
+){
+    override fun toString(): String {
+        return "$stateOrGovernorate _ $city _ $street"
+    }
+}

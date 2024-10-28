@@ -3,7 +3,7 @@ package com.example.medicinereminder.data.local.di
 import com.example.medicinereminder.data.local.AppDatabase
 import com.example.medicinereminder.data.local.dao.AlternativeMedicinesDao
 import com.example.medicinereminder.data.local.dao.AppointmentDao
-import com.example.medicinereminder.data.local.dao.ConflictDao
+import com.example.medicinereminder.data.local.dao.InteractionDao
 import com.example.medicinereminder.data.local.dao.CycleProgramDao
 import com.example.medicinereminder.data.local.dao.DayProgramDao
 import com.example.medicinereminder.data.local.dao.DoctorDao
@@ -24,7 +24,7 @@ import dagger.hilt.components.SingletonComponent
         appDatabase.medicineDao()
 
     @Provides
-    fun providesConflictDao(appDatabase: AppDatabase): ConflictDao =
+    fun providesConflictDao(appDatabase: AppDatabase): InteractionDao =
         appDatabase.conflictDao()
 
     @Provides

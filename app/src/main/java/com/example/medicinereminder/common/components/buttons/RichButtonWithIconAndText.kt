@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.example.medicinereminder.R
 import com.example.medicinereminder.common.components.buttons.OutlinedIconButtonComponent
+import com.example.medicinereminder.feature.add_doctor.presentation.main_screen.AddDoctorAction
 import com.example.medicinereminder.presentation.ui.constants.Icons
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
@@ -99,15 +100,14 @@ fun RichButtonWithIconAndTextPreview() {
 fun RichButtonWithIconAndTextDisabledPreview() {
     MedicineReminderTheme {
         Surface {
+
             RichButtonWithIconAndText(
-                icon = Icons.Outlined.Phone,
-                title = R.string.add_phone_number,
-                desc = R.string.keep_doctor_handy,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(MaterialTheme.spacing.medium16),
-                onClick = {},
-                enabled = false,
+                modifier = Modifier.fillMaxWidth(),
+                icon = Icons.Outlined.Search,
+                title = R.string.search_existing_doctors,
+                desc = R.string.facilitate_add_doctor_process,
+                onClick = {
+                }
             )
         }
     }
