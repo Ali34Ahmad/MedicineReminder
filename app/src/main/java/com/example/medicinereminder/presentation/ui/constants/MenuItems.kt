@@ -79,4 +79,24 @@ object MenuItems {
             titleStringId = R.string.missed,
         ),
     )
+
+    fun durationUnits() = listOf(
+        MoreOptionMenuItem(
+            titleStringId = R.string.hour,
+        ),
+        MoreOptionMenuItem(
+            titleStringId = R.string.day,
+        ),
+        MoreOptionMenuItem(
+            titleStringId = R.string.week,
+        ),
+        MoreOptionMenuItem(
+            titleStringId = R.string.month,
+        ),
+        MoreOptionMenuItem(
+            titleStringId = R.string.year,
+        ),
+    )
+
+
 }

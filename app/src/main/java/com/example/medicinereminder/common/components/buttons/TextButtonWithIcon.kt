@@ -28,28 +28,46 @@ fun TextButtonWithIcon(
     onClick: () -> Unit,
     @StringRes text: Int,
     @DrawableRes icon: Int,
+    iconPosition:IconPosition=IconPosition.END,
+    enabled:Boolean=true,
 ) {
     TextButton(
         onClick = { onClick() },
-        modifier = modifier
+        modifier = modifier,
+        enabled = enabled,
     ) {
+
         Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small8),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = stringResource(id = text),
-                style = MaterialTheme.typography.bodyLarge
-            )
-            Icon(
-                imageVector = ImageVector.vectorResource(id = icon),
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(start = MaterialTheme.spacing.small8),
-                tint = MaterialTheme.colorScheme.primary,
-            )
+            if (iconPosition==IconPosition.END) {
+                Text(
+                    text = stringResource(id = text),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = icon),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            }else{
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = icon),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    text = stringResource(id = text),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
         }
     }
+}
+
+enum class IconPosition {
+    START,END
 }
 
 @DarkAndLightModePreview

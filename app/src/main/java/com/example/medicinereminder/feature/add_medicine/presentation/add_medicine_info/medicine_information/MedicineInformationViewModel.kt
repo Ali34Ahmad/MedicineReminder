@@ -1,8 +1,6 @@
 package com.example.medicinereminder.feature.add_medicine.presentation.add_medicine_info.medicine_information
 
 import androidx.lifecycle.ViewModel
-import com.example.medicinereminder.R
-import com.example.medicinereminder.common.components.time_picker.list
 import com.example.medicinereminder.feature.add_medicine.domain.use_case.ValidateMedicineNameUseCase
 import com.example.medicinereminder.feature.add_medicine.domain.use_case.ValidateMedicineQuantityUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

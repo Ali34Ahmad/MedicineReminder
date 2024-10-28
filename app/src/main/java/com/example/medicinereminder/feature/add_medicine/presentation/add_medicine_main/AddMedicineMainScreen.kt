@@ -37,6 +37,9 @@ fun AddMedicineMainScreen(modifier: Modifier = Modifier) {
     val interactionsUiState = interactionsViewModel.uiState.collectAsState()
 
 
+    if (medicineInformationUiState.value.validInput)
+        addMedicineInfoViewModel.onIntent(AddMedicineInfoIntent.ConfirmButtonClick)
+
     Scaffold(
         topBar = {
             Column {
@@ -67,8 +70,6 @@ fun AddMedicineMainScreen(modifier: Modifier = Modifier) {
                 onMedicineFormIntent = medicineFormViewModel::onIntent,
                 onConfirmButtonClick = {
                     medicineInformationViewModel.onIntent(MedicineInformationIntent.ValidateData)
-                    if (medicineInformationUiState.value.validInput)
-                        addMedicineInfoViewModel.onIntent(AddMedicineInfoIntent.ConfirmButtonClick)
                 },
                 onCancelButtonClick = {},
             )

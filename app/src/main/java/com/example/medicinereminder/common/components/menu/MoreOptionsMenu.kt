@@ -33,13 +33,13 @@ fun MoreOptionsMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     onItemClick: (index: Int) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
+        .width(180.dp),
 ) {
     DropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,
         modifier = modifier
-            .width(180.dp)
             .background(
                 color = MaterialTheme.colorScheme.surfaceContainer,
                 shape = MaterialTheme.shapes.medium
@@ -79,12 +79,14 @@ fun MoreOptionItem(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(menuItem.icon),
-                contentDescription = null,
-                modifier = Modifier.padding(start = MaterialTheme.spacing.small4),
-                tint = menuItem.tint,
-            )
+            menuItem.icon?.let{
+                Icon(
+                    imageVector = ImageVector.vectorResource(menuItem.icon),
+                    contentDescription = null,
+                    modifier = Modifier.padding(start = MaterialTheme.spacing.small4),
+                    tint = menuItem.tint,
+                )
+            }
             Text(
                 text = stringResource(menuItem.titleStringId),
                 style = MaterialTheme.typography.bodyMedium,
