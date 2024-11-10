@@ -66,7 +66,7 @@ fun ListItemWithDescriptionAndTrailingTextButton(
                 Text(
                     text = stringResource(id = buttonText),
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.primary,
                 )
             }
         }

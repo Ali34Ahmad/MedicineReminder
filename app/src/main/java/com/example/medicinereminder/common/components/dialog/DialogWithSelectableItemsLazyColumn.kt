@@ -30,7 +30,7 @@ fun DialogWithSelectableItemsLazyColumn(
     onConfirmClick: () -> Unit,
     modifier: Modifier = Modifier,
     lazyListState: LazyListState = rememberLazyListState(),
-    items:LazyListScope.()->Unit={},
+    items: LazyListScope.()->Unit={},
 ) {
     if (showDialog) {
         Dialog(

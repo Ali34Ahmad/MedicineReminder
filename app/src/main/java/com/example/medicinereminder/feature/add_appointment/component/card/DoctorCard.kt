@@ -3,18 +3,19 @@ package com.example.medicinereminder.feature.add_appointment.component.card
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -29,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.example.medicinereminder.data.local.doctor1
 import com.example.medicinereminder.data.local.entity.Doctor
 import com.example.medicinereminder.feature.add_appointment.component.composable.ContactInfoSection
-import com.example.medicinereminder.feature.add_appointment.component.icon.DoctorCardIconButton
+import com.example.medicinereminder.feature.add_appointment.component.icon.DoctorCardIcon
 import com.example.medicinereminder.feature.add_appointment.component.image.FloatingImage
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.sizing
@@ -55,7 +55,7 @@ fun DoctorCard(
 ) {
 
     Box(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier,
             contentAlignment = Alignment.TopCenter
         ){
 
@@ -93,6 +93,7 @@ fun DoctorCard(
                     color = MaterialTheme.colorScheme.secondaryContainer,
                     width = MaterialTheme.sizing.small2
                 ),
+                onClick =onExpand
             ) {
                 Column(
                     modifier = Modifier
@@ -103,34 +104,47 @@ fun DoctorCard(
                                 stiffness = Spring.StiffnessLow,
                                 dampingRatio = Spring.DampingRatioLowBouncy
                             )
-                        ).clip(RoundedCornerShape(cornerRadius))
+                        )
+                        .clip(RoundedCornerShape(cornerRadius))
                     ,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Top,
                 ) {
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.large48))
-                    Text(
-                        text = doctor.name,
-                        style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.small6))
-                    Text(
-                        text = doctor.specialty,
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    //contact section
+                    //before expanding
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Spacer(Modifier.width(MaterialTheme.spacing.medium16))
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = doctor.name,
+                                style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small6))
+                            Text(
+                                text = doctor.specialty,
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+
+                        DoctorCardIcon(isToggled = isExpanded)
+                    }
+
+                    //contact section : it will be shown after expanding the card.
                     if (!(doctor.phoneNumber == null && doctor.address == null)){
                         ContactInfoSection(doctor = doctor, isExpanded = isExpanded )
                     }
-
                 }
             }
-            DoctorCardIconButton(
-                isToggled = isExpanded,
-                onClick = onExpand
-            )
+
             FloatingImage()
         }
 }

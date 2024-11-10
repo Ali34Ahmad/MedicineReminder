@@ -93,7 +93,7 @@ fun CustomPicker(
                         text = text,
                         style =  MaterialTheme.typography.headlineSmall,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.primary
+                        color = MaterialTheme.colorScheme.onSurface
                     )
             }
             Row(

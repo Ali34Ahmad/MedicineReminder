@@ -13,7 +13,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,7 +32,6 @@ import com.example.medicinereminder.feature.add_appointment.component.time_picke
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
 import com.example.medicinereminder.presentation.ui.theme.spacing
 import java.time.LocalDate
-import java.time.LocalTime
 
 @Composable
 fun AddAppointmentScreen(
@@ -88,7 +86,7 @@ fun AddAppointmentScreen(
             ) {
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium16))
                 DoctorCard(
-                    modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium16),
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = MaterialTheme.spacing.medium16),
                     doctor = uiState.doctor, isExpanded = uiState.isDetailsShown,
                     onExpand = {
                         onAction(AddAppointmentAction.ToggleDetailsVisibility)
