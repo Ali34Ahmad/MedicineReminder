@@ -1,7 +1,7 @@
 package com.example.medicinereminder.presentation.add_medicine_program
 
-import com.example.medicinereminder.common.model.Time
 import java.time.DayOfWeek
+import java.time.LocalTime
 
 data class AddMedicineProgramUiState(
     val selectedChipIndex:Int=0,
@@ -17,15 +17,15 @@ data class AddMedicineProgramUiState(
     val selectedDayOfWeekToSpecifyTimingsIndex:Int = 0,
     val isRegularDose:Boolean=true,
     val isSameTimingForAllDays:Boolean=true,
-    val timesWithAmountInDaysProgram:List<Pair<Time,Int>> = List(selectedDaysOfWeekWithCurrentSelectedDose.size+numberOfDosesPerDay){
-        Time() to 1
+    val timesWithAmountInDaysProgram:List<Pair<LocalTime,Int>> = List(selectedDaysOfWeekWithCurrentSelectedDose.size+numberOfDosesPerDay){
+        LocalTime.now() to 1
     },
 
     //Interval Program
     val repeatEveryText:String,
     val selectedRepeatEveryDurationUnitIndex:Int=0,
-    val timesWithAmountInIntervalProgram:List<Pair<Time,Int>> = List(numberOfDosesPerDay){
-        Time() to 1
+    val timesWithAmountInIntervalProgram:List<Pair<LocalTime,Int>> = List(numberOfDosesPerDay){
+        LocalTime.now() to 1
     },
     val currentDoseNumberSelectedForTiming:Int=0,
 

@@ -1,6 +1,7 @@
 package com.example.medicinereminder.common.components.cards
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -86,7 +87,7 @@ fun TooltipPreview() {
                 ),
                 onClick = {},
                 icon = Icons.Outlined.Bulb,
-                text = stringResource(id = R.string.almost_finished_msg)
+                text = stringResource(R.string.almost_finished_msg)
             )
         }
     }
@@ -104,7 +105,7 @@ fun TooltipWithTrailingIconPreview() {
                 onClick = {},
                 icon = Icons.Outlined.Bulb,
                 trailingIcon = Icons.Outlined.ArrowRight,
-                text = stringResource(id = R.string.restock_msg)
+                text = stringResource(R.string.restock_msg)
             )
         }
     }

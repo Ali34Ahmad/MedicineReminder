@@ -31,13 +31,13 @@ import com.example.medicinereminder.presentation.ui.theme.spacing
 fun ListItemWithSwitch(
     modifier: Modifier = Modifier,
     @StringRes title: Int,
-    subTitle: String? = null,
+    description: String? = null,
     checked: Boolean,
     showLongDescription: Boolean = false,
     onCheckedChange: (Boolean) -> Unit
 ) {
     val verticalAlignment =
-        if (subTitle.isNullOrBlank())
+        if (description.isNullOrBlank())
             Alignment.CenterVertically
         else
             Alignment.Top
@@ -71,9 +71,9 @@ fun ListItemWithSwitch(
                     modifier = Modifier
                         .padding(end = MaterialTheme.spacing.medium16),
                 )
-                subTitle?.let {
+                description?.let {
                     Text(
-                        text = subTitle,
+                        text = description,
                         style = MaterialTheme.typography.bodySmall,
                         maxLines = if (!showLongDescription) 1 else Int.MAX_VALUE,
                         overflow = TextOverflow.Ellipsis,
@@ -107,7 +107,7 @@ fun SwitchComponentOffPreview() {
         Surface {
             ListItemWithSwitch(
                 title = R.string.night_mode,
-                subTitle = if (checked) "On" else "Off",
+                description = if (checked) "On" else "Off",
                 onCheckedChange = {
                     checked = it
                 },
@@ -128,7 +128,7 @@ fun SwitchComponentOnPreview() {
         Surface {
             ListItemWithSwitch(
                 title = R.string.night_mode,
-                subTitle = if (checked) "On" else "Off",
+                description = if (checked) "On" else "Off",
                 onCheckedChange = {
                     checked = it
                 },
@@ -167,7 +167,7 @@ fun SwitchComponentWithLongDescriptionDisabledPreview() {
         Surface {
             ListItemWithSwitch(
                 title = R.string.night_mode,
-                subTitle = if (checked) "If your dosage varies, uncheck this option and specify details below." else "Off",
+                description = if (checked) "If your dosage varies, uncheck this option and specify details below." else "Off",
                 onCheckedChange = {
                     checked = it
                 },
@@ -187,7 +187,7 @@ fun SwitchComponentWithLongDescriptionEnabledPreview() {
         Surface {
             ListItemWithSwitch(
                 title = R.string.night_mode,
-                subTitle = if (checked) "If your dosage varies, uncheck this option and specify details below." else "Off",
+                description = if (checked) "If your dosage varies, uncheck this option and specify details below." else "Off",
                 onCheckedChange = {
                     checked = it
                 },

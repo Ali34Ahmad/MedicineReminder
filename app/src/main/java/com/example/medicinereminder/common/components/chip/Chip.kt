@@ -3,6 +3,7 @@ package com.example.medicinereminder.common.components.chip
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -22,6 +23,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -32,7 +34,9 @@ import com.example.medicinereminder.common.utility.extension.toShortName
 import com.example.medicinereminder.presentation.ui.helper.DarkAndLightModePreview
 import com.example.medicinereminder.presentation.ui.constants.ChipState
 import com.example.medicinereminder.presentation.ui.theme.MedicineReminderTheme
+import com.example.medicinereminder.presentation.ui.theme.sizing
 import com.example.medicinereminder.presentation.ui.theme.spacing
+import java.lang.Error
 import java.time.DayOfWeek
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -46,15 +50,14 @@ fun InputChipWithThreeStates(
     longClickable: Boolean,
     onLongClick: (index: Int) -> Unit,
     modifier: Modifier = Modifier,
+    isError: Boolean = false,
 ) {
-    if (clickable && chipState == ChipState.DISABLED) throw Exception(stringResource(id = R.string.chip_error_clickable_disabled))
-    if (longClickable && chipState == ChipState.DISABLED) throw Exception(stringResource(id = R.string.chip_error_long_lickable_disabled))
     val haptics = LocalHapticFeedback.current
     val enabled by rememberSaveable {
         mutableStateOf(chipState != ChipState.DISABLED)
     }
 
-    val (backgroundStyle,rowModifier, textColor) = Modifier.getChipStyle(chipState)
+    val (backgroundStyle, rowModifier, textColor) = Modifier.getChipStyle(chipState, isError)
     val boxBackgroundModifier: Modifier =
         if (chipState != ChipState.DISABLED)
             backgroundStyle
@@ -72,6 +75,7 @@ fun InputChipWithThreeStates(
 
     Box(
         modifier = Modifier
+            .clip(shape = MaterialTheme.shapes.small)
             .then(boxBackgroundModifier)
     ) {
         Row(
@@ -104,7 +108,10 @@ typealias TextColor = Color
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun Modifier.getChipStyle(chipState: ChipState): Triple<ContainerNonClickableModifier, RowPaddingModifier, TextColor> {
+private fun Modifier.getChipStyle(
+    chipState: ChipState,
+    isError: Boolean
+): Triple<ContainerNonClickableModifier, RowPaddingModifier, TextColor> {
     val rowPaddingModifier = if (chipState == ChipState.SELECTED_WITH_ICON)
         Modifier.padding(
             start = MaterialTheme.spacing.small8,
@@ -121,26 +128,28 @@ private fun Modifier.getChipStyle(chipState: ChipState): Triple<ContainerNonClic
         )
 
     return when (chipState) {
-        ChipState.SELECTED, ChipState.SELECTED_WITH_ICON ->
+        ChipState.SELECTED, ChipState.SELECTED_WITH_ICON -> {
+            val backgroundColor =
+                if (isError) MaterialTheme.colorScheme.errorContainer
+                else MaterialTheme.colorScheme.secondaryContainer
+
             Triple(
                 this
                     .background(
-                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        color = backgroundColor,
                         shape = MaterialTheme.shapes.small
                     ),
                 rowPaddingModifier,
                 MaterialTheme.colorScheme.onSecondaryContainer,
             )
+        }
 
         ChipState.UNSELECTED ->
             Triple(
                 this
-                    .background(
-                        color = MaterialTheme.colorScheme.surface,
-                        shape = MaterialTheme.shapes.small
-                    )
                     .border(
-                        width = 1.dp, color = MaterialTheme.colorScheme.outline,
+                        width = MaterialTheme.sizing.small1,
+                        color = MaterialTheme.colorScheme.outline,
                         shape = MaterialTheme.shapes.small
                     ),
                 rowPaddingModifier,
@@ -149,12 +158,8 @@ private fun Modifier.getChipStyle(chipState: ChipState): Triple<ContainerNonClic
 
         else -> Triple(
             this
-                .background(
-                    color = MaterialTheme.colorScheme.surface,
-                    shape = MaterialTheme.shapes.small
-                )
                 .border(
-                    width = 1.dp,
+                    width = MaterialTheme.sizing.small1,
                     color = MaterialTheme.colorScheme.outline.copy(alpha = 0.30f),
                     shape = MaterialTheme.shapes.small
                 ),
@@ -169,7 +174,7 @@ private fun Modifier.getChipStyle(chipState: ChipState): Triple<ContainerNonClic
 @Composable
 fun SelectedChipPreview() {
     MedicineReminderTheme {
-        Surface {
+        Surface(modifier = Modifier.padding(MaterialTheme.spacing.medium16)) {
             InputChipWithThreeStates(
                 text = DayOfWeek.MONDAY.toShortName(),
                 onClick = {},
@@ -237,6 +242,25 @@ fun DisabledChipPreview() {
                 longClickable = false,
                 onLongClick = {},
                 index = 0
+            )
+        }
+    }
+}
+
+@DarkAndLightModePreview
+@Composable
+fun ErrorChipPreview() {
+    MedicineReminderTheme {
+        Surface {
+            InputChipWithThreeStates(
+                text = DayOfWeek.MONDAY.toShortName(),
+                onClick = {},
+                chipState = ChipState.DISABLED,
+                clickable = false,
+                longClickable = false,
+                onLongClick = {},
+                index = 0,
+                isError = true,
             )
         }
     }

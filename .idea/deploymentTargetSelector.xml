@@ -20,6 +20,18 @@
       <SelectionState runConfigName="NotificationScreenPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="InfiniteLazyColumnPreview2 - DarkAndLightModePreview 1">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="InfiniteLazyColumnPreview2 - DarkAndLightModePreview 2">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="FlatTimePickerPreview - DarkAndLightModePreview 1">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="DaySpecificProgramScreenPreview - DarkAndLightModePreview 1">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

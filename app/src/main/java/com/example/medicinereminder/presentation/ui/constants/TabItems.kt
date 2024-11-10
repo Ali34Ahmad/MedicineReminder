@@ -25,4 +25,11 @@ object TabItems {
         R.string.appointments,
         R.string.refill,
     )
+    fun programScreen() = listOf(
+        R.string.every_day,
+        R.string.specific_days,
+        R.string.intervals,
+        R.string.cycle,
+    )
+
 }

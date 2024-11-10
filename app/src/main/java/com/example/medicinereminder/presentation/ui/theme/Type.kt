@@ -39,7 +39,7 @@ val typography = Typography(
     headlineSmall = TextStyle(
         fontSize = 24.sp,
         lineHeight = 32.sp,
-        letterSpacing = (-0.5).sp,
+        letterSpacing = 0.5.sp,
         fontWeight = FontWeight.Bold
     ),
     titleLarge = TextStyle(

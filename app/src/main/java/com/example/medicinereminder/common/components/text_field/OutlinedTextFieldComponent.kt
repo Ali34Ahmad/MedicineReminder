@@ -13,9 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -39,12 +37,16 @@ fun OutlinedTextFieldComponent(
     onTextButtonClick: () -> Unit = {},
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    enabled:Boolean=true,
+    readOnly:Boolean=false,
 ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
         isError = errorMessage!=null,
+        enabled = enabled,
+        readOnly=readOnly,
         supportingText = {
             if (errorMessage!=null) {
                 Text(

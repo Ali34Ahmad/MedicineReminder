@@ -20,6 +20,7 @@ data class Sizing(
     val large44:Dp=44.dp,
     val large52:Dp=52.dp,
     val large56:Dp=56.dp,
+    val large132:Dp=132.dp,
     val large62:Dp=62.dp,
     val large64:Dp=64.dp,
     val large72:Dp=72.dp,
